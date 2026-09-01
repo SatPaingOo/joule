@@ -1,0 +1,318 @@
+{
+  "model": "models/Qwen2.5-1.5B-Instruct",
+  "mass": 0.9,
+  "tokens": 24,
+  "paths": {
+    "A_full": {
+      "rows": [
+        {
+          "key": "easy",
+          "query": "What is the capital of France? Answer in one sentence.",
+          "answer": "The capital of France is Paris.",
+          "prefill_prompt_tokens": 41,
+          "new_tokens": 8,
+          "wall_s": 1.8307475000037812,
+          "tok_per_s": 4.36979976757225,
+          "ffn_keep_mean": 0.5351243593863079
+        },
+        {
+          "key": "medium",
+          "query": "Explain photosynthesis in simple terms, in about 3 sentences.",
+          "answer": "Photosynthesis is the process by which plants use sunlight to convert carbon dioxide and water into glucose and oxygen. This process occurs",
+          "prefill_prompt_tokens": 43,
+          "new_tokens": 24,
+          "wall_s": 3.996139900002163,
+          "tok_per_s": 6.005795743033674,
+          "ffn_keep_mean": 0.538887117590223
+        },
+        {
+          "key": "hard",
+          "query": "A train travels 120 km in 90 minutes. Its speed then halves. How long will it take to travel another 60 km? Reason step by step, then give the final answer.",
+          "answer": "To solve this problem, we need to follow these steps:\n\n1. **Calculate the initial speed of the train:**\n",
+          "prefill_prompt_tokens": 72,
+          "new_tokens": 24,
+          "wall_s": 4.060455300001195,
+          "tok_per_s": 5.910667210150778,
+          "ffn_keep_mean": 0.5380580308181899
+        }
+      ],
+      "res": {
+        "duration_s": 10.552045900010853,
+        "rss_mb_avg": 3185.96240234375,
+        "rss_mb_peak": 3375.07421875,
+        "sys_ram_used_gb_avg": 18.31045699119568,
+        "cpu_pct_avg": 57.737500000000004,
+        "cpu_pct_peak": 70.5,
+        "battery_w_avg": 8.009,
+        "battery_pct_start": 64.0,
+        "battery_pct_end": 64.0,
+        "samples": 16
+      }
+    },
+    "C_masked_own": {
+      "rows": [
+        {
+          "key": "easy",
+          "query": "What is the capital of France? Answer in one sentence.",
+          "answer": "The capital of France is Paris.",
+          "prefill_prompt_tokens": 41,
+          "new_tokens": 8,
+          "wall_s": 1.3935946999990847,
+          "tok_per_s": 5.740549960476496,
+          "ffn_keep_mean": 0.5351243593863079,
+          "res": {
+            "duration_s": 1.396037000013166,
+            "rss_mb_avg": 3375.265625,
+            "rss_mb_peak": 3375.265625,
+            "sys_ram_used_gb_avg": 18.500015258789062,
+            "cpu_pct_avg": 0.0,
+            "cpu_pct_peak": 0.0,
+            "battery_w_avg": 8.009,
+            "battery_pct_start": 64.0,
+            "battery_pct_end": 64.0,
+            "samples": 1
+          },
+          "res_summary": "RSS avg 3375 MB (peak 3375 MB) | sys RAM 18.5 GB | CPU 0% (peak 0%) | battery 8.0 W (64%->64%)",
+          "drift": {
+            "identical_prefix_pct": 100.0,
+            "text_ratio": 1.0,
+            "token_identical": true
+          },
+          "speedup_vs_full": 1.3136871860986437
+        },
+        {
+          "key": "medium",
+          "query": "Explain photosynthesis in simple terms, in about 3 sentences.",
+          "answer": "Photosynthesis is the process through which plants use sunlight to turn into sugar and produce oxygen. The plant turns out captures carbon",
+          "prefill_prompt_tokens": 43,
+          "new_tokens": 24,
+          "wall_s": 4.085335399999167,
+          "tok_per_s": 5.8746706573969165,
+          "ffn_keep_mean": 0.538887117590223,
+          "res": {
+            "duration_s": 4.087288100010483,
+            "rss_mb_avg": 3374.09765625,
+            "rss_mb_peak": 3375.12109375,
+            "sys_ram_used_gb_avg": 18.51528058733259,
+            "cpu_pct_avg": 50.55714285714286,
+            "cpu_pct_peak": 62.7,
+            "battery_w_avg": 8.009,
+            "battery_pct_start": 64.0,
+            "battery_pct_end": 64.0,
+            "samples": 7
+          },
+          "res_summary": "RSS avg 3374 MB (peak 3375 MB) | sys RAM 18.5 GB | CPU 51% (peak 63%) | battery 8.0 W (64%->64%)",
+          "drift": {
+            "identical_prefix_pct": 20.833333333333332,
+            "text_ratio": 0.6714801444043321,
+            "token_identical": false
+          },
+          "speedup_vs_full": 0.9781669088914897
+        },
+        {
+          "key": "hard",
+          "query": "A train travels 120 km in 90 minutes. Its speed then halves. How long will it take to travel another 60 km? Reason step by step, then give the final answer.",
+          "answer": "To solve this problem:\n\n1. First, we calculate the speed of the train during its initial journey:\n   Speed =",
+          "prefill_prompt_tokens": 72,
+          "new_tokens": 24,
+          "wall_s": 4.151620199991157,
+          "tok_per_s": 5.780875620571246,
+          "ffn_keep_mean": 0.5380580308181899,
+          "res": {
+            "duration_s": 4.154031300000497,
+            "rss_mb_avg": 3374.7795758928573,
+            "rss_mb_peak": 3375.47265625,
+            "sys_ram_used_gb_avg": 18.487147739955358,
+            "cpu_pct_avg": 51.92857142857143,
+            "cpu_pct_peak": 70.0,
+            "battery_w_avg": 8.009,
+            "battery_pct_start": 64.0,
+            "battery_pct_end": 64.0,
+            "samples": 7
+          },
+          "res_summary": "RSS avg 3375 MB (peak 3375 MB) | sys RAM 18.5 GB | CPU 52% (peak 70%) | battery 8.0 W (64%->64%)",
+          "drift": {
+            "identical_prefix_pct": 16.666666666666668,
+            "text_ratio": 0.5660377358490566,
+            "token_identical": false
+          },
+          "speedup_vs_full": 0.978041127174842
+        }
+      ]
+    },
+    "D0_full_similar": {
+      "rows": [
+        {
+          "key": "easy2",
+          "query": "Which city is the capital of France? Answer in one sentence.",
+          "answer": "Paris is the capital of France.",
+          "prefill_prompt_tokens": 42,
+          "new_tokens": 8,
+          "wall_s": 1.4672592999995686,
+          "tok_per_s": 5.452342336492501,
+          "ffn_keep_mean": 1.0,
+          "res": {
+            "duration_s": 1.4692495000053896,
+            "rss_mb_avg": 3374.84765625,
+            "rss_mb_peak": 3374.84765625,
+            "sys_ram_used_gb_avg": 18.46198272705078,
+            "cpu_pct_avg": 0.0,
+            "cpu_pct_peak": 0.0,
+            "battery_w_avg": 8.009,
+            "battery_pct_start": 64.0,
+            "battery_pct_end": 64.0,
+            "samples": 1
+          },
+          "res_summary": "RSS avg 3375 MB (peak 3375 MB) | sys RAM 18.5 GB | CPU 0% (peak 0%) | battery 8.0 W (64%->64%)"
+        },
+        {
+          "key": "medium2",
+          "query": "Describe how photosynthesis works in simple words, about 3 sentences.",
+          "answer": "Photosynthesis is the process by which plants use sunlight to convert carbon dioxide and water into glucose (a type of sugar)",
+          "prefill_prompt_tokens": 43,
+          "new_tokens": 24,
+          "wall_s": 3.9769080999976723,
+          "tok_per_s": 6.034838974532514,
+          "ffn_keep_mean": 1.0,
+          "res": {
+            "duration_s": 3.978911300000618,
+            "rss_mb_avg": 3377.770089285714,
+            "rss_mb_peak": 3378.29296875,
+            "sys_ram_used_gb_avg": 18.470934186662948,
+            "cpu_pct_avg": 51.300000000000004,
+            "cpu_pct_peak": 63.0,
+            "battery_w_avg": 8.009,
+            "battery_pct_start": 64.0,
+            "battery_pct_end": 64.0,
+            "samples": 7
+          },
+          "res_summary": "RSS avg 3378 MB (peak 3378 MB) | sys RAM 18.5 GB | CPU 51% (peak 63%) | battery 8.0 W (64%->64%)"
+        },
+        {
+          "key": "hard2",
+          "query": "A train covers 120 km in 1.5 hours. Then its speed is cut in half. How much time does it need for the next 60 km? Reason step by step and give the final answer.",
+          "answer": "To determine how long it takes for the train to cover the remaining 60 kilometers after its speed has been halved",
+          "prefill_prompt_tokens": 76,
+          "new_tokens": 24,
+          "wall_s": 4.092611500003841,
+          "tok_per_s": 5.864226301464841,
+          "ffn_keep_mean": 1.0,
+          "res": {
+            "duration_s": 4.094710799996392,
+            "rss_mb_avg": 3381.3498883928573,
+            "rss_mb_peak": 3382.67578125,
+            "sys_ram_used_gb_avg": 18.462887900216238,
+            "cpu_pct_avg": 51.34285714285715,
+            "cpu_pct_peak": 64.0,
+            "battery_w_avg": 8.009,
+            "battery_pct_start": 64.0,
+            "battery_pct_end": 64.0,
+            "samples": 7
+          },
+          "res_summary": "RSS avg 3381 MB (peak 3383 MB) | sys RAM 18.5 GB | CPU 51% (peak 64%) | battery 8.0 W (64%->64%)"
+        }
+      ]
+    },
+    "D_masked_reuse": {
+      "rows": [
+        {
+          "key": "easy2",
+          "query": "Which city is the capital of France? Answer in one sentence.",
+          "answer": "Paris is the capital of France.",
+          "prefill_prompt_tokens": 42,
+          "new_tokens": 8,
+          "wall_s": 1.4547388999926625,
+          "tok_per_s": 5.499268631670158,
+          "ffn_keep_mean": 0.5351243593863079,
+          "res": {
+            "duration_s": 1.4567261000047438,
+            "rss_mb_avg": 3382.0546875,
+            "rss_mb_peak": 3382.6640625,
+            "sys_ram_used_gb_avg": 18.421422958374023,
+            "cpu_pct_avg": 31.5,
+            "cpu_pct_peak": 63.0,
+            "battery_w_avg": 8.009,
+            "battery_pct_start": 64.0,
+            "battery_pct_end": 64.0,
+            "samples": 2
+          },
+          "res_summary": "RSS avg 3382 MB (peak 3383 MB) | sys RAM 18.4 GB | CPU 32% (peak 63%) | battery 8.0 W (64%->64%)",
+          "drift": {
+            "identical_prefix_pct": 100.0,
+            "text_ratio": 1.0,
+            "token_identical": true
+          },
+          "speedup_vs_full_similar": 1.0086066303767427
+        },
+        {
+          "key": "medium2",
+          "query": "Describe how photosynthesis works in simple words, about 3 sentences.",
+          "answer": "Photosynthesis is the process through which plants use sunlight to turn into sugar and produce oxygen. The chlorophol (plant",
+          "prefill_prompt_tokens": 43,
+          "new_tokens": 24,
+          "wall_s": 4.011215100006666,
+          "tok_per_s": 5.983224385039864,
+          "ffn_keep_mean": 0.538887117590223,
+          "res": {
+            "duration_s": 4.0129502000054345,
+            "rss_mb_avg": 3381.4592633928573,
+            "rss_mb_peak": 3382.7421875,
+            "sys_ram_used_gb_avg": 18.42318562098912,
+            "cpu_pct_avg": 50.557142857142864,
+            "cpu_pct_peak": 62.3,
+            "battery_w_avg": 8.009,
+            "battery_pct_start": 64.0,
+            "battery_pct_end": 64.0,
+            "samples": 7
+          },
+          "res_summary": "RSS avg 3381 MB (peak 3383 MB) | sys RAM 18.4 GB | CPU 51% (peak 62%) | battery 8.0 W (64%->64%)",
+          "drift": {
+            "identical_prefix_pct": 20.833333333333332,
+            "text_ratio": 0.5783132530120482,
+            "token_identical": false
+          },
+          "speedup_vs_full_similar": 0.9914472300403594
+        },
+        {
+          "key": "hard2",
+          "query": "A train covers 120 km in 1.5 hours. Then its speed is cut in half. How much time does it need for the next 60 km? Reason step by step and give the final answer.",
+          "answer": "To solve this problem, we first calculate the initial speed of the train:\nSpeed = total distance × time (unit unit",
+          "prefill_prompt_tokens": 76,
+          "new_tokens": 24,
+          "wall_s": 4.252233100007288,
+          "tok_per_s": 5.644093217739842,
+          "ffn_keep_mean": 0.5380580308181899,
+          "res": {
+            "duration_s": 4.255448399999295,
+            "rss_mb_avg": 3381.948660714286,
+            "rss_mb_peak": 3382.8984375,
+            "sys_ram_used_gb_avg": 18.422122410365514,
+            "cpu_pct_avg": 54.31428571428571,
+            "cpu_pct_peak": 78.3,
+            "battery_w_avg": 8.009,
+            "battery_pct_start": 64.0,
+            "battery_pct_end": 64.0,
+            "samples": 7
+          },
+          "res_summary": "RSS avg 3382 MB (peak 3383 MB) | sys RAM 18.4 GB | CPU 54% (peak 78%) | battery 8.0 W (64%->64%)",
+          "drift": {
+            "identical_prefix_pct": 4.166666666666667,
+            "text_ratio": 0.2907488986784141,
+            "token_identical": false
+          },
+          "speedup_vs_full_similar": 0.9624617004173234
+        }
+      ]
+    },
+    "E_cache": {
+      "query": "What is the capital of France? Answer in one sentence.",
+      "hit": true,
+      "lookup_ms": 0.00026640012220013887,
+      "answer_matches_baseline": true
+    }
+  },
+  "mask_cache_similarity": {
+    "similar_query_matches_easy_mask": false,
+    "similarity": 0.9856256246566772
+  }
+}

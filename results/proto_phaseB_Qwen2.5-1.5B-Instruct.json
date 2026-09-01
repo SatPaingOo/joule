@@ -1,0 +1,140 @@
+{
+  "model": "models\\Qwen2.5-1.5B-Instruct",
+  "max_new": 24,
+  "mass": 0.9,
+  "verify_k": 8,
+  "rows": [
+    {
+      "key": "easy",
+      "engine_full_identical_to_hf": true,
+      "engine_full_tok_s": 1.610105352413377,
+      "hf_ref": "The capital of France is Paris.",
+      "engine_full_answer": "The capital of France is Paris.",
+      "masked_answer": "The capital of France is Paris.\nYou are correct.",
+      "masked_identical_prefix_pct": 100.0,
+      "keep_mean": 0.5382294335535595,
+      "pool_touched_mb": 1186.7958984375,
+      "prefill_touched_mb": 26460.0,
+      "masked_tok_s": 8.853338120529669,
+      "gate": {
+        "used": true,
+        "fell_back": true,
+        "full_ids": [
+          785,
+          6722,
+          315,
+          9625,
+          374,
+          12095,
+          13,
+          151645,
+          198,
+          151643,
+          2610,
+          525,
+          4396,
+          13
+        ],
+        "note": "diverged within first 8; served full-keep answer"
+      },
+      "rss_fixed_mb": 4138.69921875,
+      "rss_decode_peak_mb": 4776.515625,
+      "rss_released_mb": 4776.484375,
+      "res_summary": "RSS avg 5815 MB (peak 6049 MB) | sys RAM 18.2 GB | CPU 52% (peak 70%) | battery 9.2 W (50%->50%)"
+    },
+    {
+      "key": "medium",
+      "engine_full_identical_to_hf": false,
+      "engine_full_tok_s": 1.576233361487135,
+      "hf_ref": "Photosynthesis is the process by which plants use sunlight to convert carbon dioxide and water into glucose and oxygen. This process occurs",
+      "engine_full_answer": "Photosynthesis is the process by which plants, algae, and some bacteria convert light energy from the sun into chemical energy stored",
+      "masked_answer": "Photosynthesis is the process by which plants, algae, and some bacteria convert light energy from the sun into chemical energy stored",
+      "masked_identical_prefix_pct": 33.333333333333336,
+      "keep_mean": 0.5379982484238488,
+      "pool_touched_mb": 1186.2861328125,
+      "prefill_touched_mb": 112455.0,
+      "masked_tok_s": 8.77835891784167,
+      "gate": {
+        "used": true,
+        "fell_back": true,
+        "full_ids": [
+          31772,
+          73667,
+          374,
+          279,
+          1882,
+          553,
+          892,
+          10779,
+          11,
+          67851,
+          11,
+          323,
+          1045,
+          23157,
+          5508,
+          3100,
+          4802,
+          504,
+          279,
+          7015,
+          1119,
+          11483,
+          4802,
+          9768
+        ],
+        "note": "diverged within first 8; served full-keep answer"
+      },
+      "rss_fixed_mb": 4138.69921875,
+      "rss_decode_peak_mb": 4885.9375,
+      "rss_released_mb": 4885.90625,
+      "res_summary": "RSS avg 6003 MB (peak 6155 MB) | sys RAM 18.4 GB | CPU 56% (peak 67%) | battery 9.2 W (50%->50%)"
+    },
+    {
+      "key": "hard",
+      "engine_full_identical_to_hf": true,
+      "engine_full_tok_s": 1.6019046562777783,
+      "hf_ref": "To solve this problem, we need to follow these steps:\n\n1. **Calculate the initial speed of the train:**\n",
+      "engine_full_answer": "To solve this problem, we need to follow these steps:\n\n1. **Calculate the initial speed of the train:**\n",
+      "masked_answer": "To solve this problem, we need to break down the problem and understand the relationship between the initial and the final travel.\n\n",
+      "masked_identical_prefix_pct": 33.333333333333336,
+      "keep_mean": 0.537161186337471,
+      "pool_touched_mb": 1184.4404296875,
+      "prefill_touched_mb": 220500.0,
+      "masked_tok_s": 8.896299549403004,
+      "gate": {
+        "used": true,
+        "fell_back": false,
+        "full_ids": [
+          1249,
+          11625,
+          419,
+          3491,
+          11,
+          582,
+          1184,
+          311
+        ],
+        "note": "first 8 tokens verified greedy-exact"
+      },
+      "rss_fixed_mb": 4138.69921875,
+      "rss_decode_peak_mb": 4946.390625,
+      "rss_released_mb": 4946.359375,
+      "res_summary": "RSS avg 6038 MB (peak 6235 MB) | sys RAM 18.4 GB | CPU 52% (peak 67%) | battery 22.9 W (49%->49%)"
+    }
+  ],
+  "correctness_probe": {
+    "easy": {
+      "max_abs_logit_diff": 0.28125,
+      "argmax_match": true
+    },
+    "medium": {
+      "max_abs_logit_diff": 0.25,
+      "argmax_match": true
+    },
+    "hard": {
+      "max_abs_logit_diff": 0.25,
+      "argmax_match": true
+    }
+  }
+}

@@ -1,0 +1,202 @@
+{
+  "model": "models\\Qwen2.5-7B-Instruct",
+  "mass": 0.9,
+  "max_new": 24,
+  "verify_k": 8,
+  "n_probes": 28,
+  "mask_iou_mean": 0.820616751575486,
+  "mask_iou_first_last": [
+    0.8139193140877071,
+    0.8329617825826563
+  ],
+  "rows": [
+    {
+      "key": "easy",
+      "hf_ref": "The capital of France is Paris.",
+      "static": {
+        "answer": "The capital of France is Paris.",
+        "prefix_identical_pct": 100.0,
+        "gate": {
+          "used": true,
+          "fell_back": false,
+          "full_ids": [
+            785,
+            6722,
+            315,
+            9625,
+            374,
+            12095,
+            13,
+            151645
+          ],
+          "note": "first 8 tokens verified greedy-exact"
+        },
+        "tok_s_eff": 1.7176469179526748,
+        "wall_s": 62.99638569999661,
+        "pool_touched_mb": 5629.8251953125,
+        "keep_mean": 0.5175423052694116,
+        "pool_gathered_mb": 5629.8251953125
+      },
+      "probe": {
+        "answer": "The capital of France is Paris.",
+        "prefix_identical_pct": 100.0,
+        "gate": {
+          "used": true,
+          "fell_back": false,
+          "full_ids": [
+            785,
+            6722,
+            315,
+            9625,
+            374,
+            12095,
+            13,
+            151645
+          ],
+          "note": "first 8 tokens verified greedy-exact"
+        },
+        "tok_s_eff": 0.10496604747236621,
+        "wall_s": 135.2781154999975,
+        "pool_touched_mb": 9796.08984375,
+        "keep_mean": 0.5175423052694116,
+        "pool_gathered_mb": 9796.08984375
+      }
+    },
+    {
+      "key": "medium",
+      "hf_ref": "Photosynthesis is the process by which plants, algae, and some bacteria convert light energy from the sun into chemical energy stored",
+      "static": {
+        "answer": "Photosynthesis is the process by which plants, algae, and some bacteria convert light energy from the sun into chemical energy stored",
+        "prefix_identical_pct": 100.0,
+        "gate": {
+          "used": true,
+          "fell_back": true,
+          "full_ids": [
+            31772,
+            73667,
+            374,
+            279,
+            1882,
+            553,
+            892,
+            10779,
+            11,
+            67851,
+            11,
+            323,
+            1045,
+            23157,
+            5508,
+            3100,
+            4802,
+            504,
+            279,
+            7015,
+            1119,
+            11483,
+            4802,
+            9768
+          ],
+          "note": "large-margin flip at token 3 (margin 1.25); served full-keep answer"
+        },
+        "tok_s_eff": 2.3719954217616723,
+        "wall_s": 108.56076900000335,
+        "pool_touched_mb": 5648.6103515625,
+        "keep_mean": 0.5192691976470607,
+        "pool_gathered_mb": 5648.6103515625
+      },
+      "probe": {
+        "answer": "Photosynthesis is the process by which plants, algae, and some bacteria convert sunlight into chemical energy stored in food, using",
+        "prefix_identical_pct": 62.5,
+        "gate": {
+          "used": true,
+          "fell_back": false,
+          "full_ids": [
+            31772,
+            73667,
+            374,
+            279,
+            1882,
+            553,
+            892,
+            10779
+          ],
+          "note": "first 8 tokens verified greedy-exact"
+        },
+        "tok_s_eff": 0.14668781188057792,
+        "wall_s": 225.17667420000362,
+        "pool_touched_mb": 17651.9970703125,
+        "keep_mean": 0.5192691976470607,
+        "pool_gathered_mb": 17651.9970703125
+      }
+    },
+    {
+      "key": "hard",
+      "hf_ref": "Let's break down the problem step by step.\n\n### Step 1: Calculate the initial speed of the train.\nThe",
+      "static": {
+        "answer": "Let's break down the problem step by step.\n\n### Step 1: Calculate the initial speed of the train\nThe",
+        "prefix_identical_pct": 91.66666666666667,
+        "gate": {
+          "used": true,
+          "fell_back": true,
+          "full_ids": [
+            10061,
+            594,
+            1438,
+            1495,
+            279,
+            3491,
+            3019,
+            553,
+            3019,
+            382,
+            14374,
+            14822,
+            220,
+            16,
+            25,
+            20517,
+            279,
+            2856,
+            4628,
+            315,
+            279,
+            5426,
+            198,
+            785
+          ],
+          "note": "large-margin flip at token 3 (margin 1.50); served full-keep answer"
+        },
+        "tok_s_eff": 2.2600204862019138,
+        "wall_s": 113.5375597000093,
+        "pool_touched_mb": 5591.578125,
+        "keep_mean": 0.5140262948615211,
+        "pool_gathered_mb": 5591.578125
+      },
+      "probe": {
+        "answer": "Let's break down the problem step by step.\n\n### Step 1: Calculate the Initial Speed of the Train\n\nThe",
+        "prefix_identical_pct": 70.83333333333333,
+        "gate": {
+          "used": true,
+          "fell_back": false,
+          "full_ids": [
+            10061,
+            594,
+            1438,
+            1495,
+            279,
+            3491,
+            3019,
+            553
+          ],
+          "note": "first 8 tokens verified greedy-exact"
+        },
+        "tok_s_eff": 0.146759553025331,
+        "wall_s": 230.66286750001018,
+        "pool_touched_mb": 17770.142578125,
+        "keep_mean": 0.5140262948615211,
+        "pool_gathered_mb": 17770.142578125
+      }
+    }
+  ]
+}

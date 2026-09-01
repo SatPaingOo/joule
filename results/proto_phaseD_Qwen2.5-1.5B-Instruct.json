@@ -1,0 +1,176 @@
+{
+  "model": "models\\Qwen2.5-1.5B-Instruct",
+  "mass": 0.9,
+  "max_new": 24,
+  "verify_k": 8,
+  "n_probes": 28,
+  "mask_iou_mean": 0.8346200176592499,
+  "mask_iou_first_last": [
+    0.8354513825804495,
+    0.8286986732725201
+  ],
+  "rows": [
+    {
+      "key": "easy",
+      "hf_ref": "The capital of France is Paris.",
+      "static": {
+        "answer": "The capital of France is Paris.\nYou are correct.",
+        "prefix_identical_pct": 100.0,
+        "gate": {
+          "used": true,
+          "fell_back": true,
+          "full_ids": [
+            785,
+            6722,
+            315,
+            9625,
+            374,
+            12095,
+            13,
+            151645,
+            198,
+            151643,
+            2610,
+            525,
+            4396,
+            13
+          ],
+          "note": "large-margin flip at token 6 (margin 7.50); served full-keep answer"
+        },
+        "tok_s_eff": 9.192980099023119,
+        "wall_s": 14.378449099996942,
+        "pool_touched_mb": 1186.7958984375,
+        "keep_mean": 0.5382294335535595,
+        "pool_gathered_mb": 1186.7958984375
+      },
+      "probe": {
+        "answer": "The capital of France is Paris.",
+        "prefix_identical_pct": 100.0,
+        "gate": {
+          "used": true,
+          "fell_back": false,
+          "full_ids": [
+            785,
+            6722,
+            315,
+            9625,
+            374,
+            12095,
+            13,
+            151645
+          ],
+          "note": "first 8 tokens verified greedy-exact"
+        },
+        "tok_s_eff": 0.5439383026012427,
+        "wall_s": 19.968524000010802,
+        "pool_touched_mb": 4489.927734375,
+        "keep_mean": 0.592291133744376,
+        "pool_gathered_mb": 4489.927734375
+      }
+    },
+    {
+      "key": "medium",
+      "hf_ref": "Photosynthesis is the process by which plants use sunlight to convert carbon dioxide and water into glucose and oxygen. This process occurs",
+      "static": {
+        "answer": "Photosynthesis is a process where plants use sunlight to produce sugar to store energy. In this process, sunlight is used by",
+        "prefix_identical_pct": 12.5,
+        "gate": {
+          "used": true,
+          "fell_back": false,
+          "full_ids": [
+            31772,
+            73667,
+            374,
+            279,
+            1882,
+            553,
+            892,
+            10779
+          ],
+          "note": "near-tie flip accepted at token 3 (margin 0.12 <= 0.5)"
+        },
+        "tok_s_eff": 8.605264364016627,
+        "wall_s": 10.167810200000531,
+        "pool_touched_mb": 1186.2861328125,
+        "keep_mean": 0.5379982484238488,
+        "pool_gathered_mb": 1186.2861328125
+      },
+      "probe": {
+        "answer": "Photosynthesis is a process used by plants to convert sunlight into energy through the use of water and carbon dioxide. It involves",
+        "prefix_identical_pct": 12.5,
+        "gate": {
+          "used": true,
+          "fell_back": false,
+          "full_ids": [
+            31772,
+            73667,
+            374,
+            279,
+            1882,
+            553,
+            892,
+            10779
+          ],
+          "note": "near-tie flip accepted at token 3 (margin 0.12 <= 0.5)"
+        },
+        "tok_s_eff": 0.6289156665379663,
+        "wall_s": 43.90028300000995,
+        "pool_touched_mb": 11264.4404296875,
+        "keep_mean": 0.5948142558336258,
+        "pool_gathered_mb": 11264.4404296875
+      }
+    },
+    {
+      "key": "hard",
+      "hf_ref": "To solve this problem, we need to follow these steps:\n\n1. **Calculate the initial speed of the train:**\n",
+      "static": {
+        "answer": "To solve this problem, we need to break down the problem and understand the relationship between the initial and the final travel.\n\n",
+        "prefix_identical_pct": 33.333333333333336,
+        "gate": {
+          "used": true,
+          "fell_back": false,
+          "full_ids": [
+            1249,
+            11625,
+            419,
+            3491,
+            11,
+            582,
+            1184,
+            311
+          ],
+          "note": "first 8 tokens verified greedy-exact"
+        },
+        "tok_s_eff": 8.947141958072466,
+        "wall_s": 10.133715899995877,
+        "pool_touched_mb": 1184.4404296875,
+        "keep_mean": 0.537161186337471,
+        "pool_gathered_mb": 1184.4404296875
+      },
+      "probe": {
+        "answer": "To determine the time it takes to travel another 60 km after the train's speed halves, we first need to",
+        "prefix_identical_pct": 4.166666666666667,
+        "gate": {
+          "used": true,
+          "fell_back": false,
+          "full_ids": [
+            1249,
+            11625,
+            419,
+            3491,
+            11,
+            582,
+            1184,
+            311
+          ],
+          "note": "near-tie flip accepted at token 1 (margin 0.50 <= 0.5)"
+        },
+        "tok_s_eff": 0.6352697500643557,
+        "wall_s": 43.72488370000792,
+        "pool_touched_mb": 11354.6162109375,
+        "keep_mean": 0.6012356472866875,
+        "pool_gathered_mb": 11354.6162109375
+      }
+    }
+  ]
+}

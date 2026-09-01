@@ -1,0 +1,214 @@
+{
+  "model": "models\\Qwen2.5-1.5B-Instruct",
+  "max_new": 24,
+  "mass": 0.98,
+  "verify_k": 8,
+  "rows": [
+    {
+      "key": "easy",
+      "hf_ref": "The capital of France is Paris.",
+      "static": {
+        "answer": "The capital of France is Paris.",
+        "prefix_identical_pct": 100.0,
+        "token_identical": true,
+        "gate": {
+          "used": true,
+          "fell_back": false,
+          "full_ids": [
+            785,
+            6722,
+            315,
+            9625,
+            374,
+            12095,
+            13,
+            151645
+          ],
+          "note": "first 8 tokens verified greedy-exact"
+        },
+        "tok_s_eff": 6.778477327452424,
+        "wall_s": 12.455379400009406,
+        "pool_touched_mb": 1701.6328125,
+        "refresh_scan_mb": 0.0,
+        "n_refresh": 0,
+        "added_rows": 0,
+        "keep_mean_final": 0.771715562258448
+      },
+      "adaptive6": {
+        "answer": "The capital of France is Paris.",
+        "prefix_identical_pct": 100.0,
+        "token_identical": true,
+        "gate": {
+          "used": true,
+          "fell_back": false,
+          "full_ids": [
+            785,
+            6722,
+            315,
+            9625,
+            374,
+            12095,
+            13,
+            151645
+          ],
+          "note": "first 8 tokens verified greedy-exact"
+        },
+        "tok_s_eff": 1.5631838580445097,
+        "wall_s": 15.50705790000211,
+        "pool_touched_mb": 2153.70703125,
+        "refresh_scan_mb": 2940.0,
+        "n_refresh": 2,
+        "added_rows": 51436,
+        "keep_mean_final": 0.7706393535648074
+      }
+    },
+    {
+      "key": "medium",
+      "hf_ref": "Photosynthesis is the process by which plants use sunlight to convert carbon dioxide and water into glucose and oxygen. This process occurs",
+      "static": {
+        "answer": "Photosynthesis is the process by which plants, algae, and some bacteria convert light energy from the sun into chemical energy stored",
+        "prefix_identical_pct": 33.333333333333336,
+        "token_identical": false,
+        "gate": {
+          "used": true,
+          "fell_back": true,
+          "full_ids": [
+            31772,
+            73667,
+            374,
+            279,
+            1882,
+            553,
+            892,
+            10779,
+            11,
+            67851,
+            11,
+            323,
+            1045,
+            23157,
+            5508,
+            3100,
+            4802,
+            504,
+            279,
+            7015,
+            1119,
+            11483,
+            4802,
+            9768
+          ],
+          "note": "diverged within first 8; served full-keep answer"
+        },
+        "tok_s_eff": 6.80896193201036,
+        "wall_s": 31.60405670000182,
+        "pool_touched_mb": 1700.7099609375,
+        "refresh_scan_mb": 0.0,
+        "n_refresh": 0,
+        "added_rows": 0,
+        "keep_mean_final": 0.7712970354727336
+      },
+      "adaptive6": {
+        "answer": "Photosynthesis is the process by which plants, algae, and some bacteria convert light energy from the sun into chemical energy stored",
+        "prefix_identical_pct": 33.333333333333336,
+        "token_identical": false,
+        "gate": {
+          "used": true,
+          "fell_back": true,
+          "full_ids": [
+            31772,
+            73667,
+            374,
+            279,
+            1882,
+            553,
+            892,
+            10779,
+            11,
+            67851,
+            11,
+            323,
+            1045,
+            23157,
+            5508,
+            3100,
+            4802,
+            504,
+            279,
+            7015,
+            1119,
+            11483,
+            4802,
+            9768
+          ],
+          "note": "diverged within first 8; served full-keep answer"
+        },
+        "tok_s_eff": 2.635162285665283,
+        "wall_s": 37.41460370000277,
+        "pool_touched_mb": 2200.306640625,
+        "refresh_scan_mb": 5880.0,
+        "n_refresh": 4,
+        "added_rows": 56843,
+        "keep_mean_final": 0.7688974780695779
+      }
+    },
+    {
+      "key": "hard",
+      "hf_ref": "To solve this problem, we need to follow these steps:\n\n1. **Calculate the initial speed of the train:**\n",
+      "static": {
+        "answer": "To solve this problem, we need to break it down into steps:\n\n1. **Calculate the train's initial speed:",
+        "prefix_identical_pct": 33.333333333333336,
+        "token_identical": false,
+        "gate": {
+          "used": true,
+          "fell_back": false,
+          "full_ids": [
+            1249,
+            11625,
+            419,
+            3491,
+            11,
+            582,
+            1184,
+            311
+          ],
+          "note": "first 8 tokens verified greedy-exact"
+        },
+        "tok_s_eff": 6.988426588255875,
+        "wall_s": 16.674441799987108,
+        "pool_touched_mb": 1699.0927734375,
+        "refresh_scan_mb": 0.0,
+        "n_refresh": 0,
+        "added_rows": 0,
+        "keep_mean_final": 0.7705636152199337
+      },
+      "adaptive6": {
+        "answer": "To solve this problem, we need to follow these steps:\n\n1. **Calculate the initial speed of the train:**\n",
+        "prefix_identical_pct": 100.0,
+        "token_identical": true,
+        "gate": {
+          "used": true,
+          "fell_back": false,
+          "full_ids": [
+            1249,
+            11625,
+            419,
+            3491,
+            11,
+            582,
+            1184,
+            311
+          ],
+          "note": "first 8 tokens verified greedy-exact"
+        },
+        "tok_s_eff": 2.054488170543661,
+        "wall_s": 24.522315800000797,
+        "pool_touched_mb": 2199.7353515625,
+        "refresh_scan_mb": 5880.0,
+        "n_refresh": 4,
+        "added_rows": 56962,
+        "keep_mean_final": 0.7777224140507835
+      }
+    }
+  ]
+}

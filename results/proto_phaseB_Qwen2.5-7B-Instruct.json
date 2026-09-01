@@ -1,0 +1,150 @@
+{
+  "model": "models\\Qwen2.5-7B-Instruct",
+  "max_new": 24,
+  "mass": 0.9,
+  "verify_k": 8,
+  "rows": [
+    {
+      "key": "easy",
+      "engine_full_identical_to_hf": true,
+      "engine_full_tok_s": 0.34396978824896046,
+      "hf_ref": "The capital of France is Paris.",
+      "engine_full_answer": "The capital of France is Paris.",
+      "masked_answer": "The capital of France is Paris.",
+      "masked_identical_prefix_pct": 100.0,
+      "keep_mean": 0.5175423052694116,
+      "pool_touched_mb": 5629.8251953125,
+      "prefill_touched_mb": 130536.0,
+      "masked_tok_s": 2.219909076962905,
+      "gate": {
+        "used": true,
+        "fell_back": false,
+        "full_ids": [
+          785,
+          6722,
+          315,
+          9625,
+          374,
+          12095,
+          13,
+          151645
+        ],
+        "note": "first 8 tokens verified greedy-exact"
+      },
+      "rss_fixed_mb": 17595.671875,
+      "rss_decode_peak_mb": 16245.04296875,
+      "rss_released_mb": 16245.21484375,
+      "res_summary": "RSS avg 21047 MB (peak 22257 MB) | sys RAM 29.4 GB | CPU 45% (peak 85%) | battery 21.3 W (46%->45%)"
+    },
+    {
+      "key": "medium",
+      "engine_full_identical_to_hf": true,
+      "engine_full_tok_s": 0.32987914442968136,
+      "hf_ref": "Photosynthesis is the process by which plants, algae, and some bacteria convert light energy from the sun into chemical energy stored",
+      "engine_full_answer": "Photosynthesis is the process by which plants, algae, and some bacteria convert light energy from the sun into chemical energy stored",
+      "masked_answer": "Photosynthesis is the process by which plants, algae, and some bacteria convert light energy from the sun into chemical energy stored",
+      "masked_identical_prefix_pct": 100.0,
+      "keep_mean": 0.5192691976470607,
+      "pool_touched_mb": 5648.6103515625,
+      "prefill_touched_mb": 489510.0,
+      "masked_tok_s": 2.4409156468928086,
+      "gate": {
+        "used": true,
+        "fell_back": true,
+        "full_ids": [
+          31772,
+          73667,
+          374,
+          279,
+          1882,
+          553,
+          892,
+          10779,
+          11,
+          67851,
+          11,
+          323,
+          1045,
+          23157,
+          5508,
+          3100,
+          4802,
+          504,
+          279,
+          7015,
+          1119,
+          11483,
+          4802,
+          9768
+        ],
+        "note": "diverged within first 8; served full-keep answer"
+      },
+      "rss_fixed_mb": 17595.671875,
+      "rss_decode_peak_mb": 16725.34765625,
+      "rss_released_mb": 16725.33203125,
+      "res_summary": "RSS avg 22034 MB (peak 22867 MB) | sys RAM 29.5 GB | CPU 58% (peak 79%) | battery 24.1 W (44%->43%)"
+    },
+    {
+      "key": "hard",
+      "engine_full_identical_to_hf": false,
+      "engine_full_tok_s": 0.33352129433405425,
+      "hf_ref": "Let's break down the problem step by step.\n\n### Step 1: Calculate the initial speed of the train.\nThe",
+      "engine_full_answer": "Let's break down the problem step by step.\n\n### Step 1: Calculate the initial speed of the train\nThe",
+      "masked_answer": "Let's break down the problem step by step.\n\n### Step 1: Calculate the initial speed of the train\nThe",
+      "masked_identical_prefix_pct": 91.66666666666667,
+      "keep_mean": 0.5140262948615211,
+      "pool_touched_mb": 5591.578125,
+      "prefill_touched_mb": 1022532.0,
+      "masked_tok_s": 2.4821043781645242,
+      "gate": {
+        "used": true,
+        "fell_back": true,
+        "full_ids": [
+          10061,
+          594,
+          1438,
+          1495,
+          279,
+          3491,
+          3019,
+          553,
+          3019,
+          382,
+          14374,
+          14822,
+          220,
+          16,
+          25,
+          20517,
+          279,
+          2856,
+          4628,
+          315,
+          279,
+          5426,
+          198,
+          785
+        ],
+        "note": "diverged within first 8; served full-keep answer"
+      },
+      "rss_fixed_mb": 17595.671875,
+      "rss_decode_peak_mb": 16788.72265625,
+      "rss_released_mb": 16788.69140625,
+      "res_summary": "RSS avg 22139 MB (peak 22940 MB) | sys RAM 29.6 GB | CPU 60% (peak 81%) | battery 25.1 W (42%->41%)"
+    }
+  ],
+  "correctness_probe": {
+    "easy": {
+      "max_abs_logit_diff": 0.25,
+      "argmax_match": true
+    },
+    "medium": {
+      "max_abs_logit_diff": 0.25,
+      "argmax_match": true
+    },
+    "hard": {
+      "max_abs_logit_diff": 0.25,
+      "argmax_match": true
+    }
+  }
+}

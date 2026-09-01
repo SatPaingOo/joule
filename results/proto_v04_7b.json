@@ -1,0 +1,318 @@
+{
+  "model": "models/Qwen2.5-7B-Instruct",
+  "mass": 0.9,
+  "tokens": 48,
+  "paths": {
+    "A_full": {
+      "rows": [
+        {
+          "key": "easy",
+          "query": "What is the capital of France? Answer in one sentence.",
+          "answer": "The capital of France is Paris.",
+          "prefill_prompt_tokens": 41,
+          "new_tokens": 8,
+          "wall_s": 22.482934599989676,
+          "tok_per_s": 0.3558254357064079,
+          "ffn_keep_mean": 0.5125444946544511
+        },
+        {
+          "key": "medium",
+          "query": "Explain photosynthesis in simple terms, in about 3 sentences.",
+          "answer": "Photosynthesis is the process by which plants, algae, and some bacteria convert light energy from the sun into chemical energy stored in glucose. This process occurs primarily in the chloroplasts of plant cells, where chlorophyll captures sunlight and uses",
+          "prefill_prompt_tokens": 43,
+          "new_tokens": 48,
+          "wall_s": 29.260031300000264,
+          "tok_per_s": 1.6404630435237972,
+          "ffn_keep_mean": 0.5080820912761348
+        },
+        {
+          "key": "hard",
+          "query": "A train travels 120 km in 90 minutes. Its speed then halves. How long will it take to travel another 60 km? Reason step by step, then give the final answer.",
+          "answer": "Let's break down the problem step by step.\n\n### Step 1: Calculate the initial speed of the train.\nThe train travels 120 km in 90 minutes. First, we need to convert 90 minutes into",
+          "prefill_prompt_tokens": 72,
+          "new_tokens": 48,
+          "wall_s": 29.696466199995484,
+          "tok_per_s": 1.6163539350687894,
+          "ffn_keep_mean": 0.5160755797156266
+        }
+      ],
+      "res": {
+        "duration_s": 82.1816409000021,
+        "rss_mb_avg": 12401.980439157196,
+        "rss_mb_peak": 13926.69921875,
+        "sys_ram_used_gb_avg": 26.998209577618223,
+        "cpu_pct_avg": 53.94924242424244,
+        "cpu_pct_peak": 76.1,
+        "battery_w_avg": 13.222571428571428,
+        "battery_pct_start": 63.0,
+        "battery_pct_end": 62.0,
+        "samples": 132
+      }
+    },
+    "C_masked_own": {
+      "rows": [
+        {
+          "key": "easy",
+          "query": "What is the capital of France? Answer in one sentence.",
+          "answer": "The capital of France is Paris, but there is a mistake in the question: the capital of France is Paris; actually, it is Washington; but, the capital of France is Paris. Correctly, the capital of France is Paris.",
+          "prefill_prompt_tokens": 41,
+          "new_tokens": 48,
+          "wall_s": 28.9019932999945,
+          "tok_per_s": 1.660785105780546,
+          "ffn_keep_mean": 0.5125444946544511,
+          "res": {
+            "duration_s": 28.903495000005933,
+            "rss_mb_avg": 13921.293966090425,
+            "rss_mb_peak": 13923.96484375,
+            "sys_ram_used_gb_avg": 28.37689809596285,
+            "cpu_pct_avg": 59.2468085106383,
+            "cpu_pct_peak": 66.9,
+            "battery_w_avg": 25.186,
+            "battery_pct_start": 62.0,
+            "battery_pct_end": 62.0,
+            "samples": 47
+          },
+          "res_summary": "RSS avg 13921 MB (peak 13924 MB) | sys RAM 28.4 GB | CPU 59% (peak 67%) | battery 25.2 W (62%->62%)",
+          "drift": {
+            "identical_prefix_pct": 85.71428571428571,
+            "text_ratio": 0.256198347107438,
+            "token_identical": false
+          },
+          "speedup_vs_full": 0.7779025607896032
+        },
+        {
+          "key": "medium",
+          "query": "Explain photosynthesis in simple terms, in about 3 sentences.",
+          "answer": "Photosynthesis is a process used by plants to convert sunlight into energy, using water and carbon dioxide, and producing glucose as a by-product which serves as a source of energy for the plant. In the process, photosynthesis also releases oxygen as",
+          "prefill_prompt_tokens": 43,
+          "new_tokens": 48,
+          "wall_s": 29.800813300011214,
+          "tok_per_s": 1.6106942960507034,
+          "ffn_keep_mean": 0.5080820912761348,
+          "res": {
+            "duration_s": 29.802888099991833,
+            "rss_mb_avg": 13921.66127232143,
+            "rss_mb_peak": 13924.16015625,
+            "sys_ram_used_gb_avg": 27.474062471973653,
+            "cpu_pct_avg": 64.80408163265307,
+            "cpu_pct_peak": 78.4,
+            "battery_w_avg": 25.186,
+            "battery_pct_start": 62.0,
+            "battery_pct_end": 62.0,
+            "samples": 49
+          },
+          "res_summary": "RSS avg 13922 MB (peak 13924 MB) | sys RAM 27.5 GB | CPU 65% (peak 78%) | battery 25.2 W (62%->62%)",
+          "drift": {
+            "identical_prefix_pct": 6.25,
+            "text_ratio": 0.11067193675889328,
+            "token_identical": false
+          },
+          "speedup_vs_full": 0.981853448274489
+        },
+        {
+          "key": "hard",
+          "query": "A train travels 120 km in 90 minutes. Its speed then halves. How long will it take to travel another 60 km? Reason step by step, then give the final answer.",
+          "answer": "Let's first calculate the speed of the train during its initial journey and then determine how long it takes to travel another 60 km with the halved speed.\n\n1. **Calculate the speed:**\n   - The train travels 1",
+          "prefill_prompt_tokens": 72,
+          "new_tokens": 48,
+          "wall_s": 29.903666600002907,
+          "tok_per_s": 1.6051543324789252,
+          "ffn_keep_mean": 0.5160755797156266,
+          "res": {
+            "duration_s": 29.905500900000334,
+            "rss_mb_avg": 13923.043287627552,
+            "rss_mb_peak": 13927.87109375,
+            "sys_ram_used_gb_avg": 25.87012582895707,
+            "cpu_pct_avg": 61.0408163265306,
+            "cpu_pct_peak": 82.1,
+            "battery_w_avg": 25.002,
+            "battery_pct_start": 62.0,
+            "battery_pct_end": 61.0,
+            "samples": 49
+          },
+          "res_summary": "RSS avg 13923 MB (peak 13928 MB) | sys RAM 25.9 GB | CPU 61% (peak 82%) | battery 25.0 W (62%->61%)",
+          "drift": {
+            "identical_prefix_pct": 4.166666666666667,
+            "text_ratio": 0.08247422680412371,
+            "token_identical": false
+          },
+          "speedup_vs_full": 0.9930710704215983
+        }
+      ]
+    },
+    "D0_full_similar": {
+      "rows": [
+        {
+          "key": "easy2",
+          "query": "Which city is the capital of France? Answer in one sentence.",
+          "answer": "The capital of France is Paris.",
+          "prefill_prompt_tokens": 42,
+          "new_tokens": 8,
+          "wall_s": 5.038216099987039,
+          "tok_per_s": 1.5878636091096965,
+          "ffn_keep_mean": 1.0,
+          "res": {
+            "duration_s": 5.0399040000047535,
+            "rss_mb_avg": 13922.313802083334,
+            "rss_mb_peak": 13922.94140625,
+            "sys_ram_used_gb_avg": 25.86252763536241,
+            "cpu_pct_avg": 53.06666666666667,
+            "cpu_pct_peak": 63.2,
+            "battery_w_avg": 24.726,
+            "battery_pct_start": 61.0,
+            "battery_pct_end": 61.0,
+            "samples": 9
+          },
+          "res_summary": "RSS avg 13922 MB (peak 13923 MB) | sys RAM 25.9 GB | CPU 53% (peak 63%) | battery 24.7 W (61%->61%)"
+        },
+        {
+          "key": "medium2",
+          "query": "Describe how photosynthesis works in simple words, about 3 sentences.",
+          "answer": "Photosynthesis is the process by which plants, algae, and some bacteria convert light energy from the sun into chemical energy stored in glucose. This process occurs mainly in the leaves, where chlorophyll in the chloroplasts captures sunlight and uses",
+          "prefill_prompt_tokens": 43,
+          "new_tokens": 48,
+          "wall_s": 28.41045579999627,
+          "tok_per_s": 1.6895188284873028,
+          "ffn_keep_mean": 1.0,
+          "res": {
+            "duration_s": 28.412822600002983,
+            "rss_mb_avg": 13924.667544157608,
+            "rss_mb_peak": 13927.44140625,
+            "sys_ram_used_gb_avg": 25.85244129015052,
+            "cpu_pct_avg": 59.54999999999998,
+            "cpu_pct_peak": 70.1,
+            "battery_w_avg": 24.726,
+            "battery_pct_start": 61.0,
+            "battery_pct_end": 61.0,
+            "samples": 46
+          },
+          "res_summary": "RSS avg 13925 MB (peak 13927 MB) | sys RAM 25.9 GB | CPU 60% (peak 70%) | battery 24.7 W (61%->61%)"
+        },
+        {
+          "key": "hard2",
+          "query": "A train covers 120 km in 1.5 hours. Then its speed is cut in half. How much time does it need for the next 60 km? Reason step by step and give the final answer.",
+          "answer": "Let's break down the problem step by step.\n\n### Step 1: Calculate the initial speed of the train.\nThe train covers 120 km in 1.5 hours. To find the speed, we use the formula:\n",
+          "prefill_prompt_tokens": 76,
+          "new_tokens": 48,
+          "wall_s": 29.644559000007575,
+          "tok_per_s": 1.6191841477549973,
+          "ffn_keep_mean": 1.0,
+          "res": {
+            "duration_s": 29.646774399996502,
+            "rss_mb_avg": 13929.575414540815,
+            "rss_mb_peak": 13936.30078125,
+            "sys_ram_used_gb_avg": 25.900798330501633,
+            "cpu_pct_avg": 63.31632653061225,
+            "cpu_pct_peak": 77.0,
+            "battery_w_avg": 25.0016,
+            "battery_pct_start": 61.0,
+            "battery_pct_end": 61.0,
+            "samples": 49
+          },
+          "res_summary": "RSS avg 13930 MB (peak 13936 MB) | sys RAM 25.9 GB | CPU 63% (peak 77%) | battery 25.0 W (61%->61%)"
+        }
+      ]
+    },
+    "D_masked_reuse": {
+      "rows": [
+        {
+          "key": "easy2",
+          "query": "Which city is the capital of France? Answer in one sentence.",
+          "answer": "The capital of France is Paris, but there's a correction needed: while Paris is the capital of France, the correct answer is that the capital of France is actually Paris, but rather the capital of France is Paris. The correct answer is",
+          "prefill_prompt_tokens": 42,
+          "new_tokens": 48,
+          "wall_s": 29.343381800004863,
+          "tok_per_s": 1.635803273363401,
+          "ffn_keep_mean": 0.5125444946544511,
+          "res": {
+            "duration_s": 29.34558829999878,
+            "rss_mb_avg": 13928.347574869791,
+            "rss_mb_peak": 13930.796875,
+            "sys_ram_used_gb_avg": 25.978517293930054,
+            "cpu_pct_avg": 62.13749999999998,
+            "cpu_pct_peak": 77.7,
+            "battery_w_avg": 25.8836,
+            "battery_pct_start": 61.0,
+            "battery_pct_end": 60.0,
+            "samples": 48
+          },
+          "res_summary": "RSS avg 13928 MB (peak 13931 MB) | sys RAM 26.0 GB | CPU 62% (peak 78%) | battery 25.9 W (61%->60%)",
+          "drift": {
+            "identical_prefix_pct": 85.71428571428571,
+            "text_ratio": 0.23308270676691728,
+            "token_identical": false
+          },
+          "speedup_vs_full_similar": 0.17169854975564555
+        },
+        {
+          "key": "medium2",
+          "query": "Describe how photosynthesis works in simple words, about 3 sentences.",
+          "answer": "Photosynthesis is a process where plants use sunlight, water, and carbon dioxide to make glucose and release energy, which they use to power the growth of plants. During this process, green parts in plant cells called chlorophyll help produce oxygen",
+          "prefill_prompt_tokens": 43,
+          "new_tokens": 48,
+          "wall_s": 29.375371599991922,
+          "tok_per_s": 1.6340218824674613,
+          "ffn_keep_mean": 0.5080820912761348,
+          "res": {
+            "duration_s": 29.37820130000182,
+            "rss_mb_avg": 13928.502522786459,
+            "rss_mb_peak": 13931.078125,
+            "sys_ram_used_gb_avg": 25.89146876335144,
+            "cpu_pct_avg": 61.52916666666666,
+            "cpu_pct_peak": 75.1,
+            "battery_w_avg": 24.599,
+            "battery_pct_start": 60.0,
+            "battery_pct_end": 60.0,
+            "samples": 48
+          },
+          "res_summary": "RSS avg 13929 MB (peak 13931 MB) | sys RAM 25.9 GB | CPU 62% (peak 75%) | battery 24.6 W (60%->60%)",
+          "drift": {
+            "identical_prefix_pct": 6.25,
+            "text_ratio": 0.09181636726546906,
+            "token_identical": false
+          },
+          "speedup_vs_full_similar": 0.9671522180847606
+        },
+        {
+          "key": "hard2",
+          "query": "A train covers 120 km in 1.5 hours. Then its speed is cut in half. How much time does it need for the next 60 km? Reason step by step and give the final answer.",
+          "answer": "Let's first determine the speed of the train during the initial part of the journey.\n\n1. The train covers 120 km in 1.5 hours.\nTo find the speed, we divide the distance by the time:\n\\[",
+          "prefill_prompt_tokens": 76,
+          "new_tokens": 48,
+          "wall_s": 29.72438380001404,
+          "tok_per_s": 1.614835830506849,
+          "ffn_keep_mean": 0.5160755797156266,
+          "res": {
+            "duration_s": 29.726283500000136,
+            "rss_mb_avg": 13930.257254464286,
+            "rss_mb_peak": 13938.7109375,
+            "sys_ram_used_gb_avg": 25.886443858243982,
+            "cpu_pct_avg": 60.49999999999999,
+            "cpu_pct_peak": 73.4,
+            "battery_w_avg": 24.599,
+            "battery_pct_start": 60.0,
+            "battery_pct_end": 60.0,
+            "samples": 49
+          },
+          "res_summary": "RSS avg 13930 MB (peak 13939 MB) | sys RAM 25.9 GB | CPU 60% (peak 73%) | battery 24.6 W (60%->60%)",
+          "drift": {
+            "identical_prefix_pct": 4.166666666666667,
+            "text_ratio": 0.5905292479108635,
+            "token_identical": false
+          },
+          "speedup_vs_full_similar": 0.9973145010997192
+        }
+      ]
+    },
+    "E_cache": {
+      "query": "What is the capital of France? Answer in one sentence.",
+      "hit": true,
+      "lookup_ms": 0.00026620004791766405,
+      "answer_matches_baseline": true
+    }
+  },
+  "mask_cache_similarity": {
+    "similar_query_matches_easy_mask": false,
+    "similarity": 0.9531034231185913
+  }
+}

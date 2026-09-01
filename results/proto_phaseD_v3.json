@@ -1,0 +1,208 @@
+{
+  "model": "models\\Qwen2.5-1.5B-Instruct",
+  "mass": 0.9,
+  "max_new": 24,
+  "verify_k": 8,
+  "n_probes": 28,
+  "mask_iou_mean": 0.8346200176592499,
+  "mask_iou_first_last": [
+    0.8354513825804495,
+    0.8286986732725201
+  ],
+  "rows": [
+    {
+      "key": "easy",
+      "hf_ref": "The capital of France is Paris.",
+      "static": {
+        "answer": "The capital of France is Paris.\nYou are correct.",
+        "prefix_identical_pct": 100.0,
+        "gate": {
+          "used": true,
+          "fell_back": true,
+          "full_ids": [
+            785,
+            6722,
+            315,
+            9625,
+            374,
+            12095,
+            13,
+            151645,
+            198,
+            151643,
+            2610,
+            525,
+            4396,
+            13
+          ],
+          "note": "large-margin flip at token 6 (margin 7.50); served full-keep answer"
+        },
+        "tok_s_eff": 9.385656103935144,
+        "wall_s": 12.466806000011275,
+        "pool_touched_mb": 1186.7958984375,
+        "keep_mean": 0.5382294335535595,
+        "pool_gathered_mb": 1186.7958984375
+      },
+      "probe": {
+        "answer": "The capital of France is Paris.",
+        "prefix_identical_pct": 100.0,
+        "gate": {
+          "used": true,
+          "fell_back": false,
+          "full_ids": [
+            785,
+            6722,
+            315,
+            9625,
+            374,
+            12095,
+            13,
+            151645
+          ],
+          "note": "first 8 tokens verified greedy-exact"
+        },
+        "tok_s_eff": 2.5950330770312453,
+        "wall_s": 9.897106899996288,
+        "pool_touched_mb": 1729.265625,
+        "keep_mean": 0.5382294335535595,
+        "pool_gathered_mb": 1729.265625
+      }
+    },
+    {
+      "key": "medium",
+      "hf_ref": "Photosynthesis is the process by which plants use sunlight to convert carbon dioxide and water into glucose and oxygen. This process occurs",
+      "static": {
+        "answer": "Photosynthesis is a process where plants use sunlight to produce sugar to store energy. In this process, sunlight is used by",
+        "prefix_identical_pct": 12.5,
+        "gate": {
+          "used": true,
+          "fell_back": false,
+          "full_ids": [
+            31772,
+            73667,
+            374,
+            279,
+            1882,
+            553,
+            892,
+            10779
+          ],
+          "note": "near-tie flip accepted at token 3 (margin 0.12 <= 0.5)"
+        },
+        "tok_s_eff": 8.795106035910353,
+        "wall_s": 9.767465800003265,
+        "pool_touched_mb": 1186.2861328125,
+        "keep_mean": 0.5379982484238488,
+        "pool_gathered_mb": 1186.2861328125
+      },
+      "probe": {
+        "answer": "Photosynthesis is the process by which plants, algae, and some bacteria convert light energy from the sun into chemical energy stored",
+        "prefix_identical_pct": 33.333333333333336,
+        "gate": {
+          "used": true,
+          "fell_back": true,
+          "full_ids": [
+            31772,
+            73667,
+            374,
+            279,
+            1882,
+            553,
+            892,
+            10779,
+            11,
+            67851,
+            11,
+            323,
+            1045,
+            23157,
+            5508,
+            3100,
+            4802,
+            504,
+            279,
+            7015,
+            1119,
+            11483,
+            4802,
+            9768
+          ],
+          "note": "large-margin flip at token 5 (margin 6.00); served full-keep answer"
+        },
+        "tok_s_eff": 3.0651041174577376,
+        "wall_s": 24.17902789999789,
+        "pool_touched_mb": 2703.5947265625,
+        "keep_mean": 0.5379982484238488,
+        "pool_gathered_mb": 2703.5947265625
+      }
+    },
+    {
+      "key": "hard",
+      "hf_ref": "To solve this problem, we need to follow these steps:\n\n1. **Calculate the initial speed of the train:**\n",
+      "static": {
+        "answer": "To solve this problem, we need to break down the problem and understand the relationship between the initial and the final travel.\n\n",
+        "prefix_identical_pct": 33.333333333333336,
+        "gate": {
+          "used": true,
+          "fell_back": false,
+          "full_ids": [
+            1249,
+            11625,
+            419,
+            3491,
+            11,
+            582,
+            1184,
+            311
+          ],
+          "note": "first 8 tokens verified greedy-exact"
+        },
+        "tok_s_eff": 8.49914361887601,
+        "wall_s": 10.162334599997848,
+        "pool_touched_mb": 1184.4404296875,
+        "keep_mean": 0.537161186337471,
+        "pool_gathered_mb": 1184.4404296875
+      },
+      "probe": {
+        "answer": "To solve this problem, we need to follow these steps:\n\n1. **Calculate the initial speed of the train:**\n",
+        "prefix_identical_pct": 100.0,
+        "gate": {
+          "used": true,
+          "fell_back": true,
+          "full_ids": [
+            1249,
+            11625,
+            419,
+            3491,
+            11,
+            582,
+            1184,
+            311,
+            1795,
+            1493,
+            7354,
+            1447,
+            16,
+            13,
+            3070,
+            47866,
+            279,
+            2856,
+            4628,
+            315,
+            279,
+            5426,
+            25,
+            1019
+          ],
+          "note": "large-margin flip at token 6 (margin 3.25); served full-keep answer"
+        },
+        "tok_s_eff": 3.0133184746190373,
+        "wall_s": 24.787779899997986,
+        "pool_touched_mb": 2584.65234375,
+        "keep_mean": 0.537161186337471,
+        "pool_gathered_mb": 2584.65234375
+      }
+    }
+  ]
+}

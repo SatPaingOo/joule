@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Joule Chat</title>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11/build/highlight.min.js"></script>
+<style>
+:root{--bg:#0f1117;--panel:#161a23;--panel2:#1d2230;--border:#2a3142;--text:#e6e9f0;--muted:#8b93a7;--accent:#4f8cff;--accent2:#7aa5ff;--user:#2b5fd9;--assistant:#1d2230;--err:#ff5c5c}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);height:100vh;display:flex;flex-direction:column}
+header{display:flex;align-items:center;gap:12px;padding:10px 16px;background:var(--panel);border-bottom:1px solid var(--border);flex-shrink:0}
+header h1{font-size:16px;margin:0;font-weight:600}
+header .status{font-size:12px;color:var(--muted)}
+.spacer{flex:1}
+.icon-btn{background:var(--panel2);border:1px solid var(--border);color:var(--text);border-radius:6px;padding:6px 10px;cursor:pointer;font-size:13px}
+.icon-btn:hover{border-color:var(--accent)}
+#chat{flex:1;overflow-y:auto;padding:20px 0}
+.msgs{max-width:800px;margin:0 auto;padding:0 16px;display:flex;flex-direction:column;gap:16px}
+.msg{display:flex;flex-direction:column;gap:4px}
+.msg .who{font-size:12px;color:var(--muted);font-weight:600}
+.bubble{background:var(--assistant);border:1px solid var(--border);border-radius:10px;padding:10px 14px;font-size:14px;line-height:1.55;overflow-wrap:break-word;white-space:pre-wrap}
+.bubble.user{background:var(--user);border-color:transparent;align-self:flex-end}
+.bubble pre{background:#0b0e14;border:1px solid var(--border);border-radius:8px;padding:10px;overflow-x:auto;margin:8px 0;white-space:pre}
+.bubble code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px}
+.bubble p{margin:6px 0}
+.bubble ul,.bubble ol{margin:6px 0;padding-left:22px}
+.bubble table{border-collapse:collapse;margin:8px 0}
+.bubble td,.bubble th{border:1px solid var(--border);padding:4px 8px}
+.bubble blockquote{border-left:3px solid var(--accent);margin:6px 0;padding-left:10px;color:var(--muted)}
+#typing{color:var(--muted);font-size:13px;min-height:18px}
+#inputbar{flex-shrink:0;border-top:1px solid var(--border);background:var(--panel);padding:10px 16px}
+.inputwrap{max-width:800px;margin:0 auto;display:flex;gap:8px}
+#inp{flex:1;background:var(--panel2);border:1px solid var(--border);border-radius:10px;color:var(--text);font-size:14px;padding:12px 14px;resize:none;font-family:inherit;outline:none}
+#inp:focus{border-color:var(--accent)}
+#send{background:var(--accent);color:#fff;border:none;border-radius:10px;padding:12px 20px;font-size:14px;cursor:pointer}
+#send:hover{background:var(--accent2)}
+#send:disabled{opacity:.5;cursor:not-allowed}
+.hint{max-width:800px;margin:4px auto 0;font-size:11px;color:var(--muted);text-align:center}
+#modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:10;align-items:center;justify-content:center}
+#modal.open{display:flex}
+.modal-box{background:var(--panel);border:1px solid var(--border);border-radius:12px;width:min(480px,92vw);padding:20px;max-height:86vh;overflow-y:auto}
+.modal-box h2{margin:0 0 14px;font-size:17px}
+.field{margin-bottom:14px}
+.field label{display:block;font-size:13px;color:var(--muted);margin-bottom:4px}
+.field input,.field select,.field textarea{width:100%;background:var(--panel2);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:8px 10px;font-size:14px;font-family:inherit}
+.modal-btns{display:flex;gap:8px;justify-content:flex-end;margin-top:16px}
+.modal-btns button{background:var(--panel2);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:8px 14px;cursor:pointer}
+.modal-btns button.primary{background:var(--accent);border-color:transparent;color:#fff}
+</style>
+</head>
+<body>
+<header>
+  <h1>⚡ Joule</h1>
+  <span class="status" id="status">connecting... <span id="sid" style="opacity:.6"></span></span>
+  <div class="spacer"></div>
+  <button class="icon-btn" id="btn-clear" title="Clear conversation">Clear</button>
+  <button class="icon-btn" id="btn-export" title="Export conversation">Export</button>
+  <button class="icon-btn" id="btn-settings" title="Settings">⚙ Settings</button>
+</header>
+
+<div id="chat"><div class="msgs" id="msgs"></div></div>
+
+<div id="inputbar">
+  <div class="inputwrap">
+    <textarea id="inp" rows="2" placeholder="Type a message... (Enter to send, Shift+Enter for newline)"></textarea>
+    <button id="send">Send</button>
+  </div>
+  <div class="hint" id="typing"></div>
+</div>
+
+<div id="modal">
+  <div class="modal-box">
+    <h2>⚙ Settings</h2>
+    <div class="field"><label>Model</label>
+      <select id="set-model">__MODELS__</select>
+    </div>
+    <div class="field"><label>Max tokens per reply</label>
+      <input id="set-maxtok" type="number" value="256" min="16" max="2048">
+    </div>
+    <div class="field"><label>System prompt (optional)</label>
+      <textarea id="set-sys" rows="3" placeholder="You are a helpful assistant."></textarea>
+    </div>
+    <div class="field"><label>Temperature (if supported)</label>
+      <input id="set-temp" type="number" value="0.7" min="0" max="2" step="0.1">
+    </div>
+    <div class="modal-btns">
+      <button id="modal-cancel">Cancel</button>
+      <button class="primary" id="modal-save">Save</button>
+    </div>
+  </div>
+</div>
+
+<script>
+var model = "__MODEL__";
+var sessionId = Math.random().toString(36).slice(2, 10);  // per-tab conversation
+var settings = { max_tokens: 256, system: "", temperature: 0.7 };
+var chatHistory = [];
+var busy = false;
+
+function addMsg(role, text, extra){
+  var m = document.createElement("div");
+  m.className = "msg";
+  var who = document.createElement("div");
+  who.className = "who";
+  who.textContent = role === "user" ? "You" : (extra === "error" ? "Error" : model);
+  m.appendChild(who);
+  var b = document.createElement("div");
+  b.className = "bubble" + (role === "user" ? " user" : "");
+  if (role === "assistant" && typeof marked !== "undefined"){
+    b.innerHTML = marked.parse(text || "");
+    b.querySelectorAll("pre code").forEach(function(c){ if (window.hljs) hljs.highlightElement(c); });
+  } else {
+    b.textContent = text || "";
+  }
+  m.appendChild(b);
+  document.getElementById("msgs").appendChild(m);
+  document.getElementById("chat").scrollTop = document.getElementById("chat").scrollHeight;
+  return m;
+}
+
+function stream(messages, onDelta, onDone, onErr){
+  var body = { model: model, messages: messages, max_tokens: settings.max_tokens, stream: true, session_id: sessionId };
+  if (settings.temperature && settings.temperature !== 0.7) body.temperature = settings.temperature;
+  fetch("/v1/chat/completions", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(body)
+  }).then(function(r){
+    if (!r.ok){ return r.text().then(function(t){ throw new Error("HTTP " + r.status + ": " + t); }); }
+    return r.body.getReader();
+  }).then(function(reader){
+    var dec = new TextDecoder(); var buf = "";
+    function pump(){
+      return reader.read().then(function(res){
+        if (res.done){ onDone(); return; }
+        buf += dec.decode(res.value, {stream:true});
+        var idx;
+        while ((idx = buf.indexOf("\n")) >= 0){
+          var line = buf.slice(0, idx); buf = buf.slice(idx+1);
+          if (line.indexOf("data: ") === 0 && line !== "data: [DONE]"){
+            try{
+              var ch = JSON.parse(line.slice(6));
+              var d = ch.choices && ch.choices[0] && ch.choices[0].delta;
+              if (d && d.content) onDelta(d.content);
+            }catch(e){}
+          }
+        }
+        return pump();
+      });
+    }
+    return pump();
+  }).catch(onErr);
+}
+
+function ask(text){
+  if (busy) return;
+  busy = true;
+  document.getElementById("send").disabled = true;
+  document.getElementById("typing").textContent = "thinking...";
+  addMsg("user", text);
+  chatHistory.push({role: "user", content: text});
+  var messages = [];
+  if (settings.system) messages.push({role: "system", content: settings.system});
+  chatHistory.forEach(function(m){ messages.push(m); });
+
+  var b = addMsg("assistant", "");
+  var acc = "";
+  stream(messages,
+    function(d){ acc += d; b.querySelector(".bubble").textContent = acc; },
+    function(){
+      document.getElementById("typing").textContent = "";
+      document.getElementById("send").disabled = false;
+      busy = false;
+      chatHistory.push({role: "assistant", content: acc});
+      var bubble = b.querySelector(".bubble");
+      if (typeof marked !== "undefined"){
+        bubble.innerHTML = marked.parse(acc || "");
+        bubble.querySelectorAll("pre code").forEach(function(c){ if (window.hljs) hljs.highlightElement(c); });
+      }
+      document.getElementById("chat").scrollTop = document.getElementById("chat").scrollHeight;
+    },
+    function(e){
+      document.getElementById("typing").textContent = "Error: " + e.message;
+      document.getElementById("send").disabled = false;
+      busy = false;
+      b.querySelector(".bubble").textContent = "⚠ " + e.message;
+    }
+  );
+}
+
+document.getElementById("send").addEventListener("click", function(){ var v=document.getElementById("inp").value.trim(); if(v){ document.getElementById("inp").value=""; ask(v);} });
+document.getElementById("inp").addEventListener("keydown", function(ev){
+  if (ev.key === "Enter" && !ev.shiftKey){ ev.preventDefault(); var v=this.value.trim(); if(v){ this.value=""; ask(v);} }
+});
+document.getElementById("btn-clear").addEventListener("click", function(){
+  chatHistory = []; document.getElementById("msgs").innerHTML = "";
+});
+document.getElementById("btn-export").addEventListener("click", function(){
+  var blob = new Blob([JSON.stringify(chatHistory, null, 2)], {type:"application/json"});
+  var a = document.createElement("a");
+  a.href = URL.createObjectURL(blob); a.download = "joule-chat.json"; a.click();
+});
+document.getElementById("btn-settings").addEventListener("click", function(){
+  document.getElementById("set-maxtok").value = settings.max_tokens;
+  document.getElementById("set-sys").value = settings.system;
+  document.getElementById("set-temp").value = settings.temperature;
+  document.getElementById("modal").classList.add("open");
+});
+document.getElementById("modal-cancel").addEventListener("click", function(){ document.getElementById("modal").classList.remove("open"); });
+document.getElementById("modal-save").addEventListener("click", function(){
+  var newModel = document.getElementById("set-model").value;
+  settings.max_tokens = parseInt(document.getElementById("set-maxtok").value) || 256;
+  settings.system = document.getElementById("set-sys").value;
+  settings.temperature = parseFloat(document.getElementById("set-temp").value) || 0.7;
+  document.getElementById("modal").classList.remove("open");
+  if (newModel && newModel !== model){
+    // switch model on the server, then start a fresh conversation (like other AI chats)
+    var oldModel = model;
+    fetch("/v1/model/" + encodeURIComponent(newModel), {method: "GET"}).then(function(r){
+      if (!r.ok) throw new Error("switch failed");
+      return r.json();
+    }).then(function(){
+      model = newModel;
+      chatHistory = [];
+      document.getElementById("msgs").innerHTML = "";
+      addMsg("assistant", "Model switched to " + model + ". Start a new conversation.");
+      document.getElementById("status").textContent = model + " | ready";
+      document.getElementById("set-model").value = model;
+    }).catch(function(e){
+      addMsg("assistant", "Failed to switch to " + newModel + ": " + e.message, "error");
+      document.getElementById("set-model").value = oldModel;
+    });
+  }
+});
+document.getElementById("modal").addEventListener("click", function(e){ if (e.target === this) this.classList.remove("open"); });
+
+fetch("/status").then(function(r){ return r.json(); }).then(function(s){
+  document.getElementById("status").textContent = model + " | pool " + s.pool_resident_gb + " GB | " + s.requests_served + " served";
+  document.getElementById("sid").textContent = " | session " + sessionId;
+}).catch(function(){ document.getElementById("status").textContent = "offline"; });
+</script>
+</body>
+</html>

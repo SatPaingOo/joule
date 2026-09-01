@@ -1,0 +1,328 @@
+{
+  "model": "models\\Qwen2.5-1.5B-Instruct",
+  "max_new": 24,
+  "mass": 0.9,
+  "verify_k": 8,
+  "rows": [
+    {
+      "key": "easy",
+      "hf_ref": "The capital of France is Paris.",
+      "static": {
+        "answer": "The capital of France is Paris.\nYou are correct.",
+        "prefix_identical_pct": 100.0,
+        "token_identical": true,
+        "gate": {
+          "used": true,
+          "fell_back": true,
+          "full_ids": [
+            785,
+            6722,
+            315,
+            9625,
+            374,
+            12095,
+            13,
+            151645,
+            198,
+            151643,
+            2610,
+            525,
+            4396,
+            13
+          ],
+          "note": "diverged within first 8; served full-keep answer"
+        },
+        "tok_s_eff": 8.029190182692798,
+        "wall_s": 23.479101699995226,
+        "pool_touched_mb": 1186.7958984375,
+        "refresh_scan_mb": 0.0,
+        "n_refresh": 0,
+        "added_rows": 0,
+        "keep_mean_final": 0.5382294335535595
+      },
+      "adaptive6": {
+        "answer": "The capital of France is Paris.\nYou are correct",
+        "prefix_identical_pct": 100.0,
+        "token_identical": true,
+        "gate": {
+          "used": true,
+          "fell_back": true,
+          "full_ids": [
+            785,
+            6722,
+            315,
+            9625,
+            374,
+            12095,
+            13,
+            151645,
+            198,
+            151643,
+            2610,
+            525,
+            4396
+          ],
+          "note": "diverged within first 8; served full-keep answer"
+        },
+        "tok_s_eff": 2.078643466188526,
+        "wall_s": 21.338422200002242,
+        "pool_touched_mb": 1680.46875,
+        "refresh_scan_mb": 2205.0,
+        "n_refresh": 1,
+        "added_rows": 56169,
+        "keep_mean_final": 0.5408322704689843
+      },
+      "adaptive12": {
+        "answer": "The capital of France is Paris.\nYou are correct.",
+        "prefix_identical_pct": 100.0,
+        "token_identical": true,
+        "gate": {
+          "used": true,
+          "fell_back": true,
+          "full_ids": [
+            785,
+            6722,
+            315,
+            9625,
+            374,
+            12095,
+            13,
+            151645,
+            198,
+            151643,
+            2610,
+            525,
+            4396,
+            13
+          ],
+          "note": "diverged within first 8; served full-keep answer"
+        },
+        "tok_s_eff": 2.7236347131463923,
+        "wall_s": 22.245480900004623,
+        "pool_touched_mb": 1659.2255859375,
+        "refresh_scan_mb": 2205.0,
+        "n_refresh": 1,
+        "added_rows": 53752,
+        "keep_mean_final": 0.5359494600977216
+      }
+    },
+    {
+      "key": "medium",
+      "hf_ref": "Photosynthesis is the process by which plants use sunlight to convert carbon dioxide and water into glucose and oxygen. This process occurs",
+      "static": {
+        "answer": "Photosynthesis is the process by which plants, algae, and some bacteria convert light energy from the sun into chemical energy stored",
+        "prefix_identical_pct": 33.333333333333336,
+        "token_identical": false,
+        "gate": {
+          "used": true,
+          "fell_back": true,
+          "full_ids": [
+            31772,
+            73667,
+            374,
+            279,
+            1882,
+            553,
+            892,
+            10779,
+            11,
+            67851,
+            11,
+            323,
+            1045,
+            23157,
+            5508,
+            3100,
+            4802,
+            504,
+            279,
+            7015,
+            1119,
+            11483,
+            4802,
+            9768
+          ],
+          "note": "diverged within first 8; served full-keep answer"
+        },
+        "tok_s_eff": 8.395498654847016,
+        "wall_s": 33.51336199999787,
+        "pool_touched_mb": 1186.2861328125,
+        "refresh_scan_mb": 0.0,
+        "n_refresh": 0,
+        "added_rows": 0,
+        "keep_mean_final": 0.5379982484238488
+      },
+      "adaptive6": {
+        "answer": "Photosynthesis is the process by which plants, algae, and some bacteria convert light energy from the sun into chemical energy stored",
+        "prefix_identical_pct": 33.333333333333336,
+        "token_identical": false,
+        "gate": {
+          "used": true,
+          "fell_back": true,
+          "full_ids": [
+            31772,
+            73667,
+            374,
+            279,
+            1882,
+            553,
+            892,
+            10779,
+            11,
+            67851,
+            11,
+            323,
+            1045,
+            23157,
+            5508,
+            3100,
+            4802,
+            504,
+            279,
+            7015,
+            1119,
+            11483,
+            4802,
+            9768
+          ],
+          "note": "diverged within first 8; served full-keep answer"
+        },
+        "tok_s_eff": 1.9468911787713696,
+        "wall_s": 40.52822579999338,
+        "pool_touched_mb": 2047.1572265625,
+        "refresh_scan_mb": 6615.0,
+        "n_refresh": 3,
+        "added_rows": 97948,
+        "keep_mean_final": 0.5395806772368295
+      },
+      "adaptive12": {
+        "answer": "Photosynthesis is the process by which plants, algae, and some bacteria convert light energy from the sun into chemical energy stored",
+        "prefix_identical_pct": 33.333333333333336,
+        "token_identical": false,
+        "gate": {
+          "used": true,
+          "fell_back": true,
+          "full_ids": [
+            31772,
+            73667,
+            374,
+            279,
+            1882,
+            553,
+            892,
+            10779,
+            11,
+            67851,
+            11,
+            323,
+            1045,
+            23157,
+            5508,
+            3100,
+            4802,
+            504,
+            279,
+            7015,
+            1119,
+            11483,
+            4802,
+            9768
+          ],
+          "note": "diverged within first 8; served full-keep answer"
+        },
+        "tok_s_eff": 4.014448874206682,
+        "wall_s": 25.949154899994028,
+        "pool_touched_mb": 1705.3857421875,
+        "refresh_scan_mb": 2205.0,
+        "n_refresh": 1,
+        "added_rows": 59062,
+        "keep_mean_final": 0.5395687169262341
+      }
+    },
+    {
+      "key": "hard",
+      "hf_ref": "To solve this problem, we need to follow these steps:\n\n1. **Calculate the initial speed of the train:**\n",
+      "static": {
+        "answer": "To solve this problem, we need to break down the problem and understand the relationship between the initial and the final travel.\n\n",
+        "prefix_identical_pct": 33.333333333333336,
+        "token_identical": false,
+        "gate": {
+          "used": true,
+          "fell_back": false,
+          "full_ids": [
+            1249,
+            11625,
+            419,
+            3491,
+            11,
+            582,
+            1184,
+            311
+          ],
+          "note": "first 8 tokens verified greedy-exact"
+        },
+        "tok_s_eff": 7.387837133922949,
+        "wall_s": 13.181507099987357,
+        "pool_touched_mb": 1184.4404296875,
+        "refresh_scan_mb": 0.0,
+        "n_refresh": 0,
+        "added_rows": 0,
+        "keep_mean_final": 0.537161186337471
+      },
+      "adaptive6": {
+        "answer": "To solve this problem, we need to break the journey into two parts: the first part where the train travels at its",
+        "prefix_identical_pct": 33.333333333333336,
+        "token_identical": false,
+        "gate": {
+          "used": true,
+          "fell_back": false,
+          "full_ids": [
+            1249,
+            11625,
+            419,
+            3491,
+            11,
+            582,
+            1184,
+            311
+          ],
+          "note": "first 8 tokens verified greedy-exact"
+        },
+        "tok_s_eff": 2.580586614909263,
+        "wall_s": 19.46986990000005,
+        "pool_touched_mb": 2050.2685546875,
+        "refresh_scan_mb": 6615.0,
+        "n_refresh": 3,
+        "added_rows": 98512,
+        "keep_mean_final": 0.5448700583406857
+      },
+      "adaptive12": {
+        "answer": "To solve this problem, we need to break down the problem and break it into smaller parts. Let's break it down",
+        "prefix_identical_pct": 33.333333333333336,
+        "token_identical": false,
+        "gate": {
+          "used": true,
+          "fell_back": false,
+          "full_ids": [
+            1249,
+            11625,
+            419,
+            3491,
+            11,
+            582,
+            1184,
+            311
+          ],
+          "note": "first 8 tokens verified greedy-exact"
+        },
+        "tok_s_eff": 4.447773613746041,
+        "wall_s": 14.216079999998328,
+        "pool_touched_mb": 1695.568359375,
+        "refresh_scan_mb": 2205.0,
+        "n_refresh": 1,
+        "added_rows": 58155,
+        "keep_mean_final": 0.5432318246790341
+      }
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "mode": "dense-validate",
+  "model": "models\\Qwen3-8B",
+  "rows": [
+    {
+      "key": "easy",
+      "identical": true,
+      "answer": "<think>\nOkay, the user is asking for the capital of France. I need to make sure I get this right.",
+      "tok_s": 0.37205807575421684
+    },
+    {
+      "key": "medium",
+      "identical": true,
+      "answer": "<think>\nOkay, the user wants me to explain photosynthesis in simple terms, in about three sentences. Let me start",
+      "tok_s": 0.34920138320238847
+    },
+    {
+      "key": "hard",
+      "identical": true,
+      "answer": "<think>\nOkay, let's see. The problem is about a train that travels 120 km in 9",
+      "tok_s": 0.35399408972354895
+    }
+  ]
+}

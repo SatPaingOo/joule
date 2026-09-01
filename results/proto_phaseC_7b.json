@@ -1,0 +1,230 @@
+{
+  "model": "models\\Qwen2.5-7B-Instruct",
+  "max_new": 24,
+  "mass": 0.9,
+  "verify_k": 8,
+  "rows": [
+    {
+      "key": "easy",
+      "hf_ref": "The capital of France is Paris.",
+      "static": {
+        "answer": "The capital of France is Paris.",
+        "prefix_identical_pct": 100.0,
+        "token_identical": true,
+        "gate": {
+          "used": true,
+          "fell_back": false,
+          "full_ids": [
+            785,
+            6722,
+            315,
+            9625,
+            374,
+            12095,
+            13,
+            151645
+          ],
+          "note": "first 8 tokens verified greedy-exact"
+        },
+        "tok_s_eff": 2.403171582256778,
+        "wall_s": 94.15028190000157,
+        "pool_touched_mb": 5629.8251953125,
+        "refresh_scan_mb": 0.0,
+        "n_refresh": 0,
+        "added_rows": 0,
+        "keep_mean_final": 0.5175423052694116
+      },
+      "adaptive6": {
+        "answer": "The capital of France is Paris.",
+        "prefix_identical_pct": 100.0,
+        "token_identical": true,
+        "gate": {
+          "used": true,
+          "fell_back": false,
+          "full_ids": [
+            785,
+            6722,
+            315,
+            9625,
+            374,
+            12095,
+            13,
+            151645
+          ],
+          "note": "first 8 tokens verified greedy-exact"
+        },
+        "tok_s_eff": 0.1338416852135285,
+        "wall_s": 113.60794829999213,
+        "pool_touched_mb": 8854.86328125,
+        "refresh_scan_mb": 14504.0,
+        "n_refresh": 2,
+        "added_rows": 157259,
+        "keep_mean_final": 0.5137284360826015
+      }
+    },
+    {
+      "key": "medium",
+      "hf_ref": "Photosynthesis is the process by which plants, algae, and some bacteria convert light energy from the sun into chemical energy stored",
+      "static": {
+        "answer": "Photosynthesis is the process by which plants, algae, and some bacteria convert light energy from the sun into chemical energy stored",
+        "prefix_identical_pct": 100.0,
+        "token_identical": true,
+        "gate": {
+          "used": true,
+          "fell_back": true,
+          "full_ids": [
+            31772,
+            73667,
+            374,
+            279,
+            1882,
+            553,
+            892,
+            10779,
+            11,
+            67851,
+            11,
+            323,
+            1045,
+            23157,
+            5508,
+            3100,
+            4802,
+            504,
+            279,
+            7015,
+            1119,
+            11483,
+            4802,
+            9768
+          ],
+          "note": "large-margin flip at token 3 (margin 1.25); served full-keep answer"
+        },
+        "tok_s_eff": 2.5261324558426144,
+        "wall_s": 102.20391300000483,
+        "pool_touched_mb": 5648.6103515625,
+        "refresh_scan_mb": 0.0,
+        "n_refresh": 0,
+        "added_rows": 0,
+        "keep_mean_final": 0.5192691976470607
+      },
+      "adaptive6": {
+        "answer": "Photosynthesis is the process by which plants, algae, and some bacteria convert light energy from the sun into chemical energy stored",
+        "prefix_identical_pct": 100.0,
+        "token_identical": true,
+        "gate": {
+          "used": true,
+          "fell_back": true,
+          "full_ids": [
+            31772,
+            73667,
+            374,
+            279,
+            1882,
+            553,
+            892,
+            10779,
+            11,
+            67851,
+            11,
+            323,
+            1045,
+            23157,
+            5508,
+            3100,
+            4802,
+            504,
+            279,
+            7015,
+            1119,
+            11483,
+            4802,
+            9768
+          ],
+          "note": "large-margin flip at token 3 (margin 1.25); served full-keep answer"
+        },
+        "tok_s_eff": 0.3280240393928575,
+        "wall_s": 159.624876700007,
+        "pool_touched_mb": 9969.421875,
+        "refresh_scan_mb": 29008.0,
+        "n_refresh": 4,
+        "added_rows": 210691,
+        "keep_mean_final": 0.5061515915606704
+      }
+    },
+    {
+      "key": "hard",
+      "hf_ref": "Let's break down the problem step by step.\n\n### Step 1: Calculate the initial speed of the train.\nThe",
+      "static": {
+        "answer": "Let's break down the problem step by step.\n\n### Step 1: Calculate the initial speed of the train\nThe",
+        "prefix_identical_pct": 91.66666666666667,
+        "token_identical": false,
+        "gate": {
+          "used": true,
+          "fell_back": true,
+          "full_ids": [
+            10061,
+            594,
+            1438,
+            1495,
+            279,
+            3491,
+            3019,
+            553,
+            3019,
+            382,
+            14374,
+            14822,
+            220,
+            16,
+            25,
+            20517,
+            279,
+            2856,
+            4628,
+            315,
+            279,
+            5426,
+            198,
+            785
+          ],
+          "note": "large-margin flip at token 3 (margin 1.50); served full-keep answer"
+        },
+        "tok_s_eff": 2.4845530207572692,
+        "wall_s": 96.02891649999947,
+        "pool_touched_mb": 5591.578125,
+        "refresh_scan_mb": 0.0,
+        "n_refresh": 0,
+        "added_rows": 0,
+        "keep_mean_final": 0.5140262948615211
+      },
+      "adaptive6": {
+        "answer": "Let's break down the problem step by step.\n\n### Step 1: Calculate the initial speed of the train\nThe",
+        "prefix_identical_pct": 91.66666666666667,
+        "token_identical": false,
+        "gate": {
+          "used": true,
+          "fell_back": false,
+          "full_ids": [
+            10061,
+            594,
+            1438,
+            1495,
+            279,
+            3491,
+            3019,
+            553
+          ],
+          "note": "first 8 tokens verified greedy-exact"
+        },
+        "tok_s_eff": 0.35949692113391,
+        "wall_s": 110.37662249999994,
+        "pool_touched_mb": 9942.7001953125,
+        "refresh_scan_mb": 29008.0,
+        "n_refresh": 4,
+        "added_rows": 212169,
+        "keep_mean_final": 0.5201439570103373
+      }
+    }
+  ]
+}
