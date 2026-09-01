@@ -124,7 +124,7 @@ PYTHONPATH=src python -m jouleai.cli.joule_serve models/xxx-30B --port 8080 --bu
 
 **PowerShell (recommended — launcher sets PYTHONPATH):**
 ```powershell
-cd D:\Projects\@Me\Joule
+cd <repo-root>   # where you cloned Joule
 .\joule.ps1 serve models/Qwen3-30B-A3B-Instruct-2507 --port 8080 --budget-gb 8
 ```
 
