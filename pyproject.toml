@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jouleai"
+version = "0.4.0"
+description = "Database-style MoE inference — serving a 61GB model on a 31GB laptop (negative-results retrospective)"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+keywords = ["llm", "inference", "moe", "quantization", "negative-results"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: Microsoft :: Windows",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: C",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "numpy",
+    "psutil",
+    "safetensors",
+    "torch",
+    "transformers",
+    "huggingface_hub",
+]
+
+[project.scripts]
+joule-convert = "jouleai.cli.joule_convert:main"
+joule-serve = "jouleai.cli.joule_serve:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+# The native path runs from the committed Windows DLLs — keep them in the wheel.
+[tool.setuptools.package-data]
+jouleai = ["native/*.dll", "native/*.c", "native/*.h"]

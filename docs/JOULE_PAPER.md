@@ -544,6 +544,33 @@ as a reference for "database-style" inference design.
 
 ---
 
+## 12. References
+
+Prior work this project built on, measured against, or re-derived:
+
+- **Geva, M., et al. (2021).** *Transformer Feed-Forward Layers Are Key-Value
+  Memories.* EMNLP 2021. arXiv:2012.14913 — FFN-as-memory (§7, MODEL_ANATOMY).
+- **Liu, Z., et al. (2023).** *Deja Vu: Contextual Sparsity for Efficient LLMs
+  at Inference Time.* ICML 2023. arXiv:2303.17101 — contextual sparsity
+  (§6.5, MODEL_ANATOMY §4).
+- **Men, X., et al. (2024).** *ShortGPT: Layers in Large Language Models are
+  More Redundant Than You Expect.* arXiv:2403.03853 — block influence /
+  boundary-layer sparsity (§4.2, MODEL_ANATOMY §4).
+- **Raposo, D., et al. (2024).** *Mixture-of-Depths: Dynamically allocating
+  compute in transformer-based language models.* arXiv:2404.02258 — trained
+  layer skipping (§6.2: works only when trained for it).
+- **Elhoushi, M., et al. (2024).** *LayerSkip: Enabling Early Exit Inference
+  and Self-Speculative Decoding.* arXiv:2404.16710 — trained early exit
+  (§6.2).
+- **Super Experts** — pruning super experts → repetition, the router-stability
+  result our quantization finding matches. arXiv:2507.23279 (§8, Entry 73).
+- **ggerganov/llama.cpp, PR #27478** — batched-decode bandwidth measurement
+  that independently confirms the ~13 t/s single-stream floor (BATCH_DECODER).
+- **HF transformers** — the reference oracle every verify harness compares
+  against (the "best debugging tool", §9.11).
+
+---
+
 *This document is the engineering record of what Joule tried, built, measured,
 and learned. It is written to be useful to anyone building inference engines for
 memory-constrained hardware — including the things that didn't work, which are

@@ -1,0 +1,14 @@
+# Joule — Python dependencies (CPU-only)
+#
+# Install CPU torch first (recommended), then the rest:
+#   pip install torch --index-url https://download.pytorch.org/whl/cpu
+#   pip install -r requirements.txt
+#
+# (or just: pip install -e . — pyproject.toml lists the same deps)
+
+torch
+transformers
+huggingface_hub
+psutil
+numpy
+safetensors
