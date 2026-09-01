@@ -124,6 +124,8 @@ Full details: [docs/USAGE.md](docs/USAGE.md).
 - [docs/BATCH_DECODER.md](docs/BATCH_DECODER.md) — batch kernel design + measured progress
 - [docs/JOULE_PAPER.md](docs/JOULE_PAPER.md) — **the retrospective**: what worked, what failed, the hardware floor
 - [docs/JOURNEY.md](docs/JOURNEY.md) — what was proven, in order
+- [docs/FAQ.md](docs/FAQ.md) — anticipated questions & honest answers
+  ("isn't this known research?", "why CPU-only?", "is it lossless?", ...)
 - [results/VALIDATION_LOG.md](results/VALIDATION_LOG.md) — experiment log
   (Entries 16-73, committed — the evidence base for every claim here)
 
