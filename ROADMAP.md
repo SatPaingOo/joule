@@ -1,109 +1,91 @@
-# Joule — Implementation Roadmap
+# Joule — Roadmap (current, 2026-09)
 
-> Step-by-step plan from architecture design to working product.
-> Each phase produces a testable artifact before moving to the next.
-
-> **STATUS (2026-08-31)**: This roadmap predates the pivot to a native C
-> kernel. What is actually built: a working product loop (`joule convert` →
-> `joule serve` → OpenAI-compatible HTTP + browser chat) on a registry-driven
-> arch-generic kernel — see [docs/USAGE.md](docs/USAGE.md). The phases below
-> (llama.cpp backend, Sense Router) were **superseded** by the native C
-> kernel (zig, nostdlib) and the control plane. Read as history, not current
-> plan.
+> **Status**: v0.4 working prototype is done (see [README](README.md) and
+> [results/VALIDATION_LOG.md](results/VALIDATION_LOG.md) Entries 16-73).
+> This roadmap is the *current* plan — what's proven, what's next, what's
+> hardware-gated, and what was measured to be not worth doing. (The original
+> pre-kernel roadmap is superseded; the historical record lives in
+> [docs/JOURNEY.md](docs/JOURNEY.md).)
 
 ---
 
-## Phase 1 — Weight Store Prototype (Week 1-2)
+## ✅ Done (v0.4 — measured, verified)
 
-**Goal:** Prove selective weight loading works — load only needed layers.
-
-**Deliverables:**
-- [ ] `storage/store.py` — mmap weight storage (GGUF → layer-per-file)
-- [ ] `storage/loader.py` — selective loader (context manager)
-- [ ] `storage/index.py` — weight index (layer → offset mapping)
-- [ ] Test: load Qwen2.5-1.5B layers 1-8 only → verify RAM usage < full load
-- [ ] Test: compute with partial layers → output correctness
-
-**Success criteria:** RAM usage ∝ loaded layers (not model size).
-
----
-
-## Phase 2 — Sense Router Prototype (Week 2-3)
-
-**Goal:** Route queries without training data.
-
-**Deliverables:**
-- [ ] `sense/signals.py` — A(x) embedding, C(x) consensus, M(x) probe
-- [ ] `sense/router.py` — routing decision (cache/local/cloud)
-- [ ] Calibration: collect (S, outcome) pairs from real usage
-- [ ] Test: routing accuracy on 50-query workload
-
-**Success criteria:** Router correctly routes ≥90% of queries (measured by verify gate).
+| Area | State | Evidence |
+|---|---|---|
+| Disk-backed MoE serving (61 GB on 31 GB RAM) | working, RAM ∝ working set, budget-invariant | Entry 22/51 |
+| Registry-driven arch-generic native C kernel | verified vs HF on 5 models (qwen2/qwen3/llama/mistral/olmoe/qwen3_moe) | Entry 67 |
+| Batch decode kernel (spin barrier, Q4 batch GEMM) | correct (B=1 bit-identical, B=2-4 ≤ 7e-7); best case 19.6 tok/s @ B=8 | Entry 42/48 |
+| OpenAI-compatible server + browser chat | works (MoE models); batched prefill ~2 s first token | Entry 68 |
+| Expert tiers | Q4 (default), bf16-exact (fixes long-gen drift), i8 (built, reverted) | Entry 71/73 |
+| Verify harness (`verify.py --native`) | auto-PASS gate per arch family | Entry 67 |
+| Docs + evidence | retrospective, FAQ (20 Q), arch audit, VALIDATION_LOG committed | — |
 
 ---
 
-## Phase 3 — Answer Cache (Week 3-4)
+## 🔜 Next (ranked by value ÷ effort)
 
-**Goal:** Persistent answer cache with lossless verification.
-
-**Deliverables:**
-- [ ] `cache/store.py` — persistent answer store (disk-backed)
-- [ ] `cache/verify.py` — Tier-A verification (teacher-forced pass)
-- [ ] Cache hit → serve (<1s, token-identical)
-- [ ] Cache miss → FULL decode → cache new answer
-- [ ] Test: 10-query repeat benchmark (expect 10x on repeats)
-
-**Success criteria:** Cache hit <1s, verify pass rate ≥97%, token-identical outputs.
-
----
-
-## Phase 4 — llama.cpp Backend (Week 4-6)
-
-**Goal:** Replace PyTorch with llama.cpp for production inference.
-
-**Deliverables:**
-- [ ] `backends/llamacpp_backend.py` — llama.cpp HTTP client
-- [ ] Remove PyTorch dependency for inference (keep for conversion only)
-- [ ] Benchmark: joule-serve vs ollama-serve (same model, same prompts)
-- [ ] Target: lighter install, faster startup, equal/better speed
-
-**Success criteria:** Install <100MB (vs PyTorch 5GB), startup <5s, speed ≥ Ollama.
-
----
-
-## Phase 5 — OpenAI-Compatible Server (Week 6-8)
-
-**Goal:** User-facing product — drop-in replacement for any OpenAI API client.
-
-**Deliverables:**
-- [ ] `serve/server.py` — FastAPI server (chat completions, streaming, health)
-- [ ] `serve/cli.py` — CLI chat interface
-- [ ] `jouleai-convert` — model analyzer (sense profile generator)
-- [ ] Dashboard: usage stats, cache hit rate, resource usage
-- [ ] Documentation: README, API docs, deployment guide
-
-**Success criteria:** A new user can install → serve → chat in <5 minutes.
+1. **GPU / Strix-Halo / Mac validation** — run the same kernel on a
+   bandwidth-rich device. The 150-480 tok/s figures are projections, not
+   measurements; this is the single unmeasured claim, and the paradigm's best
+   case lives there. (Control plane already adapts per device.)
+2. **Comparative benchmark vs Ollama / llama.cpp** — same model, same prompts,
+   wall-clock + peak RAM + tok/s. Turns "why not just use Ollama" into data.
+3. **Calibrated quantization on the 30B experts (GPTQ/AWQ-style)** — the
+   router-threshold finding predicts *reducing average error is not enough*;
+   test whether calibrated quantization crosses the router's decision boundary
+   and kills the long-gen drift.
+4. **Long-horizon verification (64+ tokens) in the harness** — the ≤12-token
+   horizon is why the Q4 drift hid for two sessions (Entry 71-73).
+5. **Dense serve wiring** — the kernel's dense path is verified; the serve
+   wiring is the remaining product gap.
+6. **Linux/macOS port of the native kernels** — the biggest adoption unlock
+   (currently Windows x64; the pure-Python path runs anywhere but is slow).
+7. **More arch families** — deepseek (MLA), gemma, phi, gpt_oss are detected +
+   gated with a loud error; the registry + verify harness makes each testable
+   in one command once the kernel math lands.
+8. **Speculative decoding with a close-in-size draft** — 0.6B rejected
+   (Entry 69 acceptance ~0); a 1.7B/4B draft for the 30B target is the next
+   try, per the same-family-close-in-size requirement.
+9. **int8 VNNI GEMM for attention + lm_head** — the remaining compute-bound
+   bottleneck at B>1 (per-step time grows with B); converts compute-bound into
+   bandwidth at batch.
+10. **Third-party credibility benchmark** — 200+ queries / lm-eval-harness.
 
 ---
 
-## Phase 6 — Advanced Features (Week 8+)
-
-- [ ] Query-adaptive depth (CALM-style early exit)
-- [ ] MoE support (DeepSeek-V2-Lite dynamic-k)
-- [ ] Online self-calibration (auto τ_s from production traffic)
-- [ ] Multi-model routing (1.5B for easy, 7B for hard)
-- [ ] VS Code extension
-- [ ] Paper submission (ArXiv preprint)
-
----
-
-## Deferred (from BACKLOG)
+## ⏳ Deferred (hardware / traffic gated)
 
 | Item | Trigger |
 |---|---|
-| Cache auto-persist | After Phase 3 |
-| fp32 verify | After Phase 4 benchmark |
-| Vector DB upgrade | When cache >10k entries |
-| 200+ calibration | Paper phase |
-| GPU validation | When GPU available |
-| Tier B formal proof | Paper phase |
+| GPU validation (item 1 above) | when a bandwidth-rich device is available |
+| Vector DB upgrade for the answer cache | when cache > 10k entries |
+| 200+ query calibration data | paper phase / production traffic |
+| Tier B formal proof of the verify gate | paper phase |
+| NPU backend | when an NPU device is available |
+
+---
+
+## ❌ Disproven — do not revisit (measured, this repo)
+
+These were the project's own research threads; each was tested and the
+negative result is documented. Anyone tempted to try them should read the
+corresponding section first:
+
+| Thread | Why it fails | Evidence |
+|---|---|---|
+| Per-query layer selection ("this query needs layers 1,2,3,25") | layer influence is model-inherent, not query-dependent | Entry 43, JOULE_PAPER §6.2 |
+| Inference-only layer skipping / early exit | KV-coupling + no redundancy in shallow MoE; only *trained* skipping (MoD/LayerSkip) works | §6.2 |
+| Expert-output cache | expert outputs are input-dependent; the ceiling is bandwidth, not disk IO | §6.3 |
+| Cross-family speculative decoding | tokenizer + distribution mismatch → acceptance ~0-1% | Entry 54/69 |
+| i8 expert tier | 2× bytes → 2× bandwidth, quantize overhead eats VNNI at tiny row-dots | Entry 71 |
+| Adaptive FFN neuron masking on CPU | probe + delta-gather + pool rebuild cost > FFN compute saved | Entry 19 |
+
+---
+
+## How to contribute
+
+Any "Next" item is a good starting point. See [docs/STANDARDS.md](docs/STANDARDS.md)
+for the quality gates (verify PASS, semantic naming, no version suffixes) and
+[docs/USAGE.md](docs/USAGE.md) for running. Ranked contribution values:
+Linux/macOS port > benchmarks > calibrated quantization > dense wiring.

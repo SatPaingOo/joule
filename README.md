@@ -119,7 +119,7 @@ Full details: [docs/USAGE.md](docs/USAGE.md).
 
 - [ARCHITECTURE.md](ARCHITECTURE.md) — system design
 - [VISION.md](VISION.md) — the granular computing paradigm
-- [ROADMAP.md](ROADMAP.md) — implementation plan
+- [ROADMAP.md](ROADMAP.md) — current plan: done / next (ranked) / deferred / disproven
 - [docs/USAGE.md](docs/USAGE.md) — run / API / clients
 - [docs/BATCH_DECODER.md](docs/BATCH_DECODER.md) — batch kernel design + measured progress
 - [docs/JOULE_PAPER.md](docs/JOULE_PAPER.md) — **the retrospective**: what worked, what failed, the hardware floor
