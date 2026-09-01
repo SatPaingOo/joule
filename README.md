@@ -56,6 +56,23 @@ real.
 1,2,3,25") — layer influence is model-inherent, not query-dependent. See the
 status note in [VISION.md](VISION.md) and [docs/JOULE_PAPER.md](docs/JOULE_PAPER.md) §6.
 
+## Related Work / Prior Art
+
+Joule was built on, measured against, and — in places — re-derived from
+existing work. The docs say which is which. The honest positioning:
+
+| System | What it does | Where Joule differs |
+|---|---|---|
+| **llama.cpp / ggml** | Full model loaded in RAM (or mmap'd), CPU-optimized kernels; the de-facto CPU inference standard | Joule keeps weights on disk and loads only the active MoE expert set per token — RAM ∝ working set, so a model larger than RAM can be served. ggml-exact math is Joule's *correctness baseline*, not a speed competitor. |
+| **vLLM / Ollama** | Fast serving on GPU / RAM-rich hardware | Joule targets the opposite corner: memory-constrained, disk-backed MoE serving (8–16 GB edge devices). Single-stream it cannot beat them — the bandwidth floor guarantees it (see Status) — and the README says so plainly. |
+| **HF transformers** | Reference implementation | Used as the verification oracle — every native kernel output is checked against HF (Entry 67); the "best debugging tool" (JOULE_PAPER §9.11). |
+| **DeepSeek-V2 (expert parallelism)** | Streams experts across GPUs | Joule streams experts from **disk on a single CPU**, no GPU required — 61 GB MoE on 31 GB RAM with RAM ∝ working set (FAQ). |
+| **Deja Vu / ShortGPT / MoD / LayerSkip** | Contextual sparsity, layer redundancy, *trained* skipping / early exit | Joule measured *inference-only* skipping on MoE specifically and quantified that it collapses quality (OLMoE collapses on any skip; 30B gibbers on last-6) — the measured failure is this repo's contribution (FAQ, JOULE_PAPER §6.2). |
+
+The full literature-vs-measurement comparison is in
+[docs/FAQ.md](docs/FAQ.md) ("isn't this just re-doing research that already
+exists?") and the paper's [References §12](docs/JOULE_PAPER.md#12-references).
+
 ## Key Principles
 
 1. **Load only what you need** — selective weight loading per query
